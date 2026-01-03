@@ -1,0 +1,299 @@
+# Science SPARK Club Website - Customization Guide
+
+Welcome to your new website! This guide will help you customize it with your own content.
+
+## 📁 What You Have
+
+- **spark-website.html** - Your complete website in a single file
+- All styling, animations, and functionality included
+- Mobile-responsive design
+- 25 activity slots (4 fully detailed examples, 21 templates to fill)
+
+## 🎨 Quick Start
+
+1. **Download** the spark-website.html file
+2. **Open it** in any web browser to see it in action
+3. **Edit it** using any text editor (Notepad, TextEdit, VS Code, etc.)
+4. **Replace** placeholder content with your own
+
+## 📸 Adding Your Photos
+
+### Where to Replace Photos:
+
+1. **Mission Section** (Line ~950)
+   - Find: `<div class="placeholder-img">Replace with photo of volunteers with students</div>`
+   - Replace with: `<img src="your-photo.jpg" alt="Description" style="width:100%; border-radius:12px;">`
+
+3. **Team Section - President** (Line ~1045)
+   - Find: `<div class="placeholder-img" style="height: 350px;">Replace with president photo</div>`
+   - Replace with: `<img src="president-photo.jpg" alt="President Name" style="width:100%; height:350px; object-fit:cover;">`
+
+4. **Team Section - Officers** (Lines ~1060, 1075)
+   - Find: `<div class="placeholder-img" style="height: 200px;">Replace with VP/officer photo</div>`
+   - Replace with: `<img src="vp-photo.jpg" alt="VP Name" style="width:100%; height:200px; object-fit:cover;">`
+
+5. **Team Section - Active Volunteers** (Lines ~1095-1180)
+   - Find: `<div class="placeholder-img" style="height: 220px;">Replace with volunteer photo</div>`
+   - Replace with: `<img src="volunteer1.jpg" alt="Volunteer Name" style="width:100%; height:220px; object-fit:cover;">`
+
+6. **Team Section - All Volunteers (Compact)** (Lines ~1195-1270)
+   - Find: `<div class="placeholder-img" style="height: 150px;">Photo</div>`
+   - Replace with: `<img src="volunteer-name.jpg" alt="Name" style="width:100%; height:150px; object-fit:cover;">`
+   - Add as many of these as you have volunteers!
+
+7. **Team Section - Group Photo** (Line ~1280)
+   - Find: `<div class="placeholder-img" style="height: 400px; width: 100%;">Replace with full team group photo</div>`
+   - Replace with: `<img src="team-group-photo.jpg" alt="SPARK Team" style="width:100%; height:400px; object-fit:cover; border-radius:12px;">`
+
+8. **Past Events** (Lines ~1320-1380)
+   - Find: `<div class="event-image">Replace with event photo</div>`
+   - Replace with: `<img src="event-photo.jpg" alt="Event" style="width:100%; height:250px; object-fit:cover;">`
+
+### How to Add Photos:
+- Put your photos in the same folder as the HTML file
+- Reference them by filename: `<img src="lincoln-event.jpg" ...>`
+- Or use online URLs: `<img src="https://yoursite.com/photo.jpg" ...>`
+
+## ✏️ Editing Content
+
+### Update Contact Email (Multiple places):
+- Find: `spark@hillsdale.edu`
+- Replace with your actual email
+
+### Update Stats (Line ~890):
+- Change numbers: `500+`, `15+`, `25+`, etc.
+- Update descriptions
+
+### Add Team Information (Lines ~1020-1300):
+
+The team section now has **4 tiers** to handle large teams professionally:
+
+**TIER 1 - Leadership Team (3 people):**
+- **President** (large featured card):
+  - Replace `[President Name]` with actual name
+  - Add 3-4 sentence bio about their passion, goals, experience
+  - Add inspirational quote
+  - This card is special - it's bigger and highlighted with yellow border
+  
+- **Vice President & Officer** (smaller cards):
+  - Replace names and titles
+  - Add 2-3 sentence bios for each
+
+**TIER 2 - Active Volunteers (6 people provided):**
+- Medium-sized cards with photos
+- Each needs: name, grade, specialty, 2-sentence bio
+- These are your most active/regular volunteers
+- You can add more by copying a volunteer card block
+
+**TIER 3 - All Volunteers (Compact tiles - 8 provided, add as many as needed):**
+- Small tiles with just: photo, name, and grade
+- Perfect for showing ALL 20+ volunteers without cluttering
+- **To add more volunteers:** Simply copy and paste one of the volunteer tile blocks
+- Example tile block to copy:
+```html
+<div class="volunteer-tile">
+    <div class="volunteer-tile-image">
+        <div class="placeholder-img" style="height: 150px;">Photo</div>
+    </div>
+    <h5>[Name]</h5>
+    <p class="volunteer-grade">Junior</p>
+</div>
+```
+
+**TIER 4 - Group Photo:**
+- One large photo of your entire team together
+- Add a caption about your team
+
+**Tips for Large Teams:**
+- Leadership (Tier 1): 2-3 people max
+- Active Volunteers (Tier 2): 4-8 people
+- All Volunteers (Tier 3): Everyone else (unlimited!)
+- Group Photo (Tier 4): Whole team together
+
+### Add/Edit Past Events (Lines ~1150-1200):
+- Copy an event card block
+- Paste to create a new event
+- Update: date, school name, stats, description, testimonial
+
+## 🧪 Filling in Activity Templates
+
+You have **4 fully detailed example activities** and **21 template slots** to fill.
+
+### Template Locations:
+Activities 5-25 (starting around line ~2500 in the JavaScript section)
+
+### How to Fill an Activity:
+
+1. **Find the template** (e.g., Activity 5: Volcano Eruptions)
+
+2. **Replace bracketed text** with your content:
+   ```javascript
+   fullDescription: '[ADD FULL DESCRIPTION]'
+   // Change to:
+   fullDescription: 'Students create chemical reactions by mixing acids and bases...'
+   ```
+
+3. **Fill all sections:**
+   - `fullDescription`: What students will do and learn
+   - `whyItsCool`: What makes this exciting
+   - `learningObjectives`: Array of 3-5 learning goals
+   - `materials`: Array of all items needed
+   - `steps`: Array of step-by-step instructions
+   - `safetyTips`: Array of safety considerations
+   - `engagementTips`: Array of teaching tips
+   - `questionsToAsk`: Array of discussion questions
+
+### Example of Filled Template:
+
+```javascript
+{
+    id: 'activity-5',
+    title: 'Volcano Eruptions',
+    category: 'chemistry',
+    difficulty: 'Easy',
+    ageRange: 'K-6',
+    duration: '30 minutes',
+    icon: '🌋',
+    shortDescription: 'Create fizzing, foaming volcanic eruptions!',
+    fullDescription: 'Students create a chemical reaction by combining baking soda (base) and vinegar (acid), producing carbon dioxide gas that creates an erupting volcano effect.',
+    whyItsCool: 'It looks like a real volcano! Plus students can add food coloring for lava and dish soap for extra foam.',
+    learningObjectives: [
+        'Understand acid-base reactions',
+        'Observe gas production from chemical reactions',
+        'Learn about real volcanic eruptions'
+    ],
+    materials: [
+        'Baking soda',
+        'White vinegar',
+        'Food coloring (red/orange)',
+        'Dish soap',
+        'Plastic bottle or cup',
+        'Tray to contain mess',
+        'Modeling clay (optional, to build volcano)'
+    ],
+    steps: [
+        'Place plastic bottle on tray. Optional: build clay volcano around it',
+        'Add 2-3 tablespoons baking soda to bottle',
+        'Add a few drops of dish soap',
+        'Add red/orange food coloring',
+        'When ready to erupt: pour in 1/2 cup vinegar quickly',
+        'Watch it fizz and foam out like lava!',
+        'Discuss: What gas is being produced? (CO2)'
+    ],
+    safetyTips: [
+        'Do this outside or on a protected surface',
+        'Vinegar is safe but avoid getting in eyes',
+        'Adult should pour vinegar for younger students',
+        'No eating/drinking the materials'
+    ],
+    engagementTips: [
+        'Build suspense before the eruption',
+        'Let students make predictions',
+        'Try different amounts - what makes the biggest eruption?',
+        'Connect to real volcanoes around the world'
+    ],
+    questionsToAsk: [
+        'What do you think will happen when we mix these?',
+        'Why does it fizz?',
+        'How is this like a real volcano?',
+        'What gas is being created?'
+    ]
+}
+```
+
+## 🎨 Customizing Colors
+
+Find the `:root` section (lines 20-35) and change colors:
+
+```css
+:root {
+    --color-yellow: #FDB913;  /* Change to any color code */
+    --color-teal: #06b6d4;
+    --color-coral: #ff6b6b;
+    --color-purple: #a78bfa;
+}
+```
+
+Visit [coolors.co](https://coolors.co) to find color palettes!
+
+## 🌐 Getting Your Site Online
+
+### Option 1: Netlify Drop (Easiest - FREE)
+1. Go to [app.netlify.com/drop](https://app.netlify.com/drop)
+2. Drag your spark-website.html file onto the page
+3. Get instant URL: `spark-science.netlify.app`
+4. No account needed!
+
+### Option 2: GitHub Pages (FREE)
+1. Create free account at [github.com](https://github.com)
+2. Create new repository named "spark-club"
+3. Upload your HTML file (rename it to `index.html`)
+4. Go to Settings > Pages > Enable GitHub Pages
+5. Your site: `yourusername.github.io/spark-club`
+
+### Option 3: Custom Domain
+1. Buy domain (~$12/year): `sciencesparkclub.org`
+2. Use Netlify or GitHub Pages
+3. Point domain to your site
+
+## 📱 Testing Your Site
+
+**Before going live, test:**
+- Open on phone (is it readable?)
+- Click all navigation links
+- Open activity modals
+- Try search and filters
+- Replace ALL placeholder text with your content
+
+## 🆘 Common Issues
+
+**Problem:** Photo won't show
+- **Solution:** Make sure photo is in same folder as HTML, or use full URL
+
+**Problem:** Activity doesn't open
+- **Solution:** Check that the activity `id` is unique and matches
+
+**Problem:** Colors look wrong
+- **Solution:** Use # before color codes: `#FDB913` not `FDB913`
+
+## 📝 Checklist Before Launch
+
+- [ ] Replace ALL placeholder images
+- [ ] Add president information and photo
+- [ ] Add volunteer team members (at least 4-6)
+- [ ] Update email address everywhere
+- [ ] Fill in at least 10 activities (you can add more later)
+- [ ] Update stats with real numbers
+- [ ] Add at least 3 past events
+- [ ] Test on mobile phone
+- [ ] Check spelling and grammar
+- [ ] Add your social media links (if any)
+
+## 💡 Tips
+
+- **Start small:** You don't need all 25 activities filled immediately
+- **Add as you go:** Update after each school visit
+- **Save often:** Make backup copies as you edit
+- **Ask for help:** If stuck, share the file with someone tech-savvy
+- **Team organization:** The 4-tier team structure lets you showcase everyone:
+  - Tier 1 (Leadership): Your president and officers get spotlight
+  - Tier 2 (Active): Regular volunteers with bios
+  - Tier 3 (Everyone): Simple tiles for all 20+ volunteers
+  - Tier 4 (Group): Team photo brings it all together
+- **Adding volunteers is easy:** Just copy/paste a volunteer tile in Tier 3!
+
+## 🚀 Next Steps
+
+1. Replace all `[ADD ...]` brackets with your content
+2. Add your photos
+3. Test thoroughly
+4. Upload to Netlify
+5. Share your link with schools and parents!
+
+---
+
+**Need help?** The website is all in one file, so it's easy to edit. Just search for text you want to change and replace it!
+
+**Remember:** The 4 example activities (Static Electricity, Owl Pellet, Density Tower, Sound Science) are fully complete and can guide you on how to fill the others.
+
+Good luck with Science SPARK Club! 🌟

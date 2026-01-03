@@ -1,0 +1,2749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARK - Science Program Advancing Real Knowledge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-yellow: #FDB913;
+            --color-yellow-dark: #E5A609;
+            --color-teal: #06b6d4;
+            --color-teal-dark: #0891b2;
+            --color-coral: #ff6b6b;
+            --color-purple: #a78bfa;
+            --color-bg: #ffffff;
+            --color-bg-light: #f8fafc;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-border: #e2e8f0;
+            --font-heading: 'Manrope', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background: var(--color-bg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--color-yellow);
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 0 var(--color-yellow-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-teal);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(253, 185, 19, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-yellow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: var(--color-yellow);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--color-teal);
+            color: white;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-teal);
+            border: 2px solid var(--color-teal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-teal);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-lightbulb {
+            width: 100%;
+            max-width: 400px;
+            filter: drop-shadow(0 10px 30px rgba(253, 185, 19, 0.3));
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--color-teal);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--color-yellow);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Mission Section */
+        #mission {
+            background: var(--color-bg-light);
+        }
+
+        /* Team Section Styles */
+        #team {
+            background: white;
+        }
+
+        .tier-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Group Photos Section */
+        .group-photos-section {
+            margin-bottom: 5rem;
+        }
+
+        .group-photo-placeholder {
+            background: var(--color-bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .group-photo-placeholder .placeholder-img {
+            border-radius: 12px;
+        }
+
+        /* Team Carousel Section */
+        .team-carousel-section {
+            margin-bottom: 4rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .carousel-slide {
+            background: var(--color-bg-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .carousel-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .member-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--color-yellow);
+            color: var(--color-text);
+            width: fit-content;
+        }
+
+        .carousel-description h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            color: var(--color-teal);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .member-bio {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .carousel-btn {
+            background: var(--color-teal);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-teal-dark);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--color-teal);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .dot:hover {
+            background: var(--color-teal);
+        }
+
+        .carousel-note {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Join Team CTA */
+        .join-team-cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .join-team-cta h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .join-team-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .join-team-cta .btn-primary {
+            background: white;
+            color: var(--color-teal);
+            font-weight: 700;
+        }
+
+        .join-team-cta .btn-primary:hover {
+            background: var(--color-yellow);
+            color: var(--color-text);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 1rem;
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .mission-points {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .mission-points li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-left: 4px solid var(--color-coral);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .mission-points li::before {
+            content: '⚡';
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .mission-image {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--color-yellow) 0%, var(--color-coral) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Past Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-teal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--color-bg-light);
+            color: var(--color-teal);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .event-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .event-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .event-stats span::before {
+            margin-right: 0.4rem;
+        }
+
+        .event-description {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .event-testimonial {
+            background: var(--color-bg-light);
+            padding: 1rem;
+            border-left: 3px solid var(--color-yellow);
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--color-text);
+            margin-top: 1rem;
+        }
+
+        /* Activities Section */
+        #activities {
+            background: var(--color-bg-light);
+        }
+
+        .activities-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--color-text);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-teal);
+            color: white;
+            border-color: var(--color-teal);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--color-teal);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-yellow);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--color-bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .activity-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--color-bg-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .meta-tag.category {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--color-teal);
+        }
+
+        .activity-card p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .activity-difficulty {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--color-yellow);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--color-bg-light);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-close:hover {
+            background: var(--color-coral);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-section h3::before {
+            content: '⚡';
+            font-size: 1.5rem;
+        }
+
+        .modal-section p,
+        .modal-section li {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-section ul,
+        .modal-section ol {
+            padding-left: 1.5rem;
+        }
+
+        .modal-section ol li {
+            margin-bottom: 1rem;
+        }
+
+        .safety-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .safety-warning strong {
+            color: #856404;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Support Section */
+        #support {
+            background: var(--color-bg-light);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .support-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .support-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--color-bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .support-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .support-card p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: var(--color-teal);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .contact-email:hover {
+            background: var(--color-teal-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .faq {
+            margin-top: 4rem;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container,
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-slide {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .carousel-container {
+                gap: 1rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lightbulb -->
+                    <circle cx="50" cy="35" r="20" fill="#FDB913"/>
+                    <path d="M 35 50 Q 35 65 50 70 Q 65 65 65 50" fill="#FDB913"/>
+                    <rect x="45" y="70" width="10" height="8" fill="#E5A609" rx="2"/>
+                    <rect x="42" y="78" width="16" height="4" fill="#E5A609" rx="2"/>
+                    <!-- Light rays -->
+                    <line x1="50" y1="10" x2="50" y2="5" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="70" y1="15" x2="75" y2="10" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="75" y1="35" x2="80" y2="35" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="30" y1="15" x2="25" y2="10" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="25" y1="35" x2="20" y2="35" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="logo-text">SPARK</div>
+            </div>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#impact">Our Impact</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#support">Support Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Inspiring Young Scientists<br><span class="highlight">One SPARK at a Time</span></h1>
+                <p class="hero-subtitle">High school volunteers bringing hands-on STEM activities to elementary schools, igniting curiosity and fostering a lifelong love of learning.</p>
+                <div class="hero-cta">
+                    <a href="#impact" class="btn btn-primary">See Our Impact</a>
+                    <a href="#activities" class="btn btn-secondary">Browse Activities</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <svg class="hero-lightbulb" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Large lightbulb illustration -->
+                    <defs>
+                        <linearGradient id="bulbGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FDB913;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#E5A609;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Bulb -->
+                    <circle cx="100" cy="80" r="50" fill="url(#bulbGradient)" opacity="0.9"/>
+                    <path d="M 60 120 Q 60 150 100 160 Q 140 150 140 120" fill="url(#bulbGradient)"/>
+                    <!-- Base -->
+                    <rect x="85" y="160" width="30" height="20" fill="#E5A609" rx="4"/>
+                    <rect x="80" y="180" width="40" height="10" fill="#E5A609" rx="4"/>
+                    <!-- Shine effect -->
+                    <ellipse cx="85" cy="70" rx="15" ry="20" fill="white" opacity="0.4"/>
+                    <!-- Rays -->
+                    <line x1="100" y1="20" x2="100" y2="5" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="145" y1="35" x2="160" y2="20" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="160" y1="80" x2="175" y2="80" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="145" y1="125" x2="160" y2="140" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="55" y1="35" x2="40" y2="20" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="40" y1="80" x2="25" y2="80" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="55" y1="125" x2="40" y2="140" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Students Inspired</p>
+            </div>
+            <div class="stat-item">
+                <h3>8</h3>
+                <p>Schools Visited</p>
+            </div>
+            <div class="stat-item">
+                <h3>20+</h3>
+                <p>Activities Created</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Volunteer Hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="section-subtitle">Bringing the excitement of science directly to elementary classrooms</p>
+            </div>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h3>Educating & Inspiring the Next Generation</h3>
+                    <p>Science SPARK Club is a student-led initiative from Hillsdale High School dedicated to fostering scientific curiosity in elementary students through interactive, hands-on STEM activities.</p>
+                    <p>Our passionate high school volunteers visit local elementary schools, bringing engaging experiments and demonstrations that make science accessible, fun, and memorable for young learners.</p>
+                    <ul class="mission-points">
+                        <li>Interactive hands-on experiments designed for elementary students</li>
+                        <li>Led by trained and enthusiastic high school volunteers</li>
+                        <li>Activities covering physics, chemistry, biology, and engineering</li>
+                        <li>Free resources for parents to recreate activities at home</li>
+                    </ul>
+                </div>
+                <div class="mission-image">
+                    <img src="media/event2.HEIC" alt="SPARK volunteers with students" style="width: 100%; height: auto; border-radius: 8px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section id="team">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The passionate high school volunteers making SPARK happen</p>
+            </div>
+
+            <!-- Group Photos Section -->
+            <div class="group-photos-section">
+                <h3 class="tier-title">Our SPARK Family</h3>
+                <div class="group-photo-placeholder">
+                    <img src="media/team.JPEG" alt="SPARK team group photo" style="height: 400px; width: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="group-photo-placeholder">
+                    <img src="media/event8.JPEG" alt="SPARK team group photo" style="height: 400px; width: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="group-photo-placeholder">
+                    <img src="media/event9.JPEG" alt="SPARK team group photo" style="height: 400px; width: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+            </div>
+
+            <!-- Team Carousel -->
+            <div class="team-carousel-section">
+                <h3 class="tier-title">Meet Our Volunteers</h3>
+
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&lt;</button>
+
+                    <div class="carousel-slide">
+                        <div class="carousel-image">
+                            <img src="media/team.JPEG" alt="Team member photo" style="height: 450px; width: 100%; object-fit: cover; border-radius: 8px;">
+                        </div>
+                        <div class="carousel-description">
+                            <span class="member-badge">Club President</span>
+                            <h3>[Name]</h3>
+                            <p class="member-role">Senior, Hillsdale High School</p>
+                            <p class="member-bio">[Add description about this team member - their passion for science education, why they joined SPARK, their favorite activities, and what they hope to achieve.]</p>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&gt;</button>
+                </div>
+
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                    <span class="dot" onclick="goToSlide(5)"></span>
+                    <span class="dot" onclick="goToSlide(6)"></span>
+                    <span class="dot" onclick="goToSlide(7)"></span>
+                    <span class="dot" onclick="goToSlide(8)"></span>
+                </div>
+
+                <p class="carousel-note">Use the arrows to browse through our team members</p>
+            </div>
+
+            <!-- Call to Action for Volunteers -->
+            <div class="join-team-cta">
+                <h3>Want to Join Our Team?</h3>
+                <p>We're always looking for passionate Hillsdale High School students to join SPARK!</p>
+                <a href="#contact" class="btn btn-primary">Become a Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section id="impact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Impact</h2>
+                <p class="section-subtitle">See how we've brought science to life in local elementary schools</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <img src="media/beresford 2025.jpg" alt="SPARK event at Beresford Elementary" class="event-image" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div class="event-content">
+                        <span class="event-date">October 2025</span>
+                        <h3>Beresford Elementary School Math + Science Night</h3>
+                        <div class="event-stats">
+                            <span>👥 100 Students</span>
+                            <span>⚗️ 12 Activities</span>
+                        </div>
+                        <p class="event-description">We coordinated a math/science night at Beresford Elementary! Designed 6 math and 6 science activities targeted for each grade level.</p>
+                        <div class="event-testimonial">
+                            "Thank you all so much! I loved the unique, creative stations! I learned a few good ideas for the classroom too! We very much enjoy having you here for math/science night! The kids loved it!" - Mrs. Fried, Teacher
+                        </div>
+                        <div class="event-testimonial">
+                            "Thank you so much for helping us at math science night. Everyone had a great time, and it wouldn't have happened without you. We learned a lot and are so grateful. It was amazing and was all because of you." - Sofia, Student Council Member
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <img src="media/meadow heights_.jpg" alt="SPARK event at Meadow Heights Elementary" class="event-image" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div class="event-content">
+                        <span class="event-date">December 2025</span>
+                        <h3>Meadow Heights Elementary School Knowledge Fair</h3>
+                        <div class="event-stats">
+                            <span>👥 50 Students</span>
+                            <span>⚗️ 9 Activities</span>
+                        </div>
+                        <p class="event-description">Alongside their annual knowledge fair where students share science poster board presentations, we hosted 9 tables of hands-on science activities for families to explore!</p>
+                        <div class="event-testimonial">
+                            "I want to echo my thanks to you Stella and to all of the Hillsdale students who came tonight. The activities were wonderful and it was great to have you here engaging with our students and families. Thank you, thank you, thank you!" - Amy Connors, PTA/Parent
+                        </div>
+                        <div class="event-testimonial">
+                            "Very professional group. Lovely to work with! Hope to collaborate again next year!" - Anonymous
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <img src="media/foster city library.jpg" alt="SPARK event at Foster City Library" class="event-image" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div class="event-content">
+                        <span class="event-date">May 2025</span>
+                        <h3>Foster City Library STEM Event</h3>
+                        <div class="event-stats">
+                            <span>👥 80 Students</span>
+                            <span>⚗️ 8 Activities</span>
+                        </div>
+                        <p class="event-description">We hosted 8 tables of STEM activities at the public library, open to everyone to participate! Originally 50 kids registered, but roughly 80 kids participated on the day of the event.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Schools Visited List -->
+            <div style="margin-top: 3rem; text-align: center; padding: 2rem; background: var(--color-bg-light); border-radius: 16px;">
+                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; color: var(--color-teal); margin-bottom: 1rem;">Schools Visited</h3>
+                <p style="font-size: 1.1rem; color: var(--color-text); line-height: 1.8;">
+                    Beresford Elementary School, Meadow Heights Elementary School, George Hall Elementary School, Parkside Montessori School, Bayside Elementary School, Bowditch Middle School, Foster City Elementary School
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Activities Library</h2>
+                <p class="section-subtitle">Explore our collection of hands-on STEM activities you can try at home</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search activities...">
+            </div>
+
+            <div class="activities-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="physics">Physics</button>
+                <button class="filter-btn" data-filter="chemistry">Chemistry</button>
+                <button class="filter-btn" data-filter="biology">Biology</button>
+                <button class="filter-btn" data-filter="engineering">Engineering</button>
+            </div>
+
+            <div class="activities-grid" id="activitiesGrid">
+                <!-- Activities will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Support Our Mission</h2>
+                <p class="section-subtitle">Help us bring science education to more elementary students</p>
+            </div>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">💰</div>
+                    <h3>Donate</h3>
+                    <p>Your financial contributions help us purchase materials for experiments, transportation, and educational resources.</p>
+                    <p><em>Fundraising link coming soon!</em></p>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">📦</div>
+                    <h3>Material Donations</h3>
+                    <p>We're always in need of science supplies! Check our wish list for specific items that would help our activities.</p>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">🤝</div>
+                    <h3>Partner With Us</h3>
+                    <p>Schools and organizations can partner with SPARK to bring science education to their community.</p>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">👥</div>
+                    <h3>Volunteer</h3>
+                    <p>High school students from Hillsdale can join our team of volunteers and help inspire the next generation.</p>
+                    <a href="#contact" class="btn btn-secondary">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">We'd love to hear from you!</p>
+            </div>
+            <div class="contact-content">
+                <p>Interested in booking a visit to your school? Want to volunteer? Have questions about our activities?</p>
+                <a href="mailto:stellar.shih@gmail.com" class="contact-email">
+                    <span>📧</span>
+                    <span>stellar.shih@gmail.com</span>
+                </a>
+
+                <div class="faq">
+                    <div class="faq-item">
+                        <h4>How can my school book a SPARK visit?</h4>
+                        <p>Email us at stellar.shih@gmail.com with your school name, preferred dates, number of students, and grade levels. We'll work with you to customize activities perfect for your students!</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>I am a student at Hillsdale High, how can I join the club?</h4>
+                        <p>If you’re a student at hillsdale high school, join our Remind https://www.remind.com/join/9kaf7h3</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Are the activities free?</h4>
+                        <p>Yes! All our school visits and activity resources are provided free of charge. We're supported by donations and volunteer time.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How can high school students join SPARK?</h4>
+                        <p>Hillsdale High School students can reach out via email to learn about volunteer opportunities, training sessions, and our meeting schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">SPARK</div>
+            <p class="footer-text">Science Program Advancing Real Knowledge</p>
+            <p class="footer-text">Hillsdale High School | Inspiring Elementary Students Since 2024</p>
+            <p class="footer-text">&copy; 2024 Science SPARK Club. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Activity Modal -->
+    <div class="modal" id="activityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Activities Database
+        const activities = [
+            // NEW ACTIVITIES FROM ACTIVITIES.MD
+            {
+                id: 'activity-5',
+                title: 'Invisible Ink',
+                category: 'chemistry',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '✉️',
+                shortDescription: 'Create secret messages using invisible ink and reveal them with turmeric magic!',
+                fullDescription: 'Students write secret messages using a baking soda solution that becomes invisible when dry. When brushed with a turmeric mixture, the hidden message dramatically appears through a pH-based reaction. This activity demonstrates acid-base chemistry in a fun, spy-themed context.',
+                whyItsCool: 'Kids love the mystery and excitement of secret messages! The dramatic color change when the message appears feels like magic. The spy theme captures imagination and the hands-on nature keeps everyone engaged.',
+                learningObjectives: [
+                    'Understand pH-based chemical reactions',
+                    'Learn about natural pH indicators like turmeric',
+                    'Discover real-world applications of chemistry',
+                    'Practice careful observation and patience'
+                ],
+                materials: [
+                    'Water color postcards (cut into quarters)',
+                    'Turmeric powder (1 tbsp per quarter cup rubbing alcohol)',
+                    'Rubbing alcohol',
+                    'Baking soda (1 tbsp per quarter cup water)',
+                    'Water',
+                    'Thin paintbrushes for writing',
+                    'Big paintbrushes for revealing',
+                    'Trays or plates',
+                    'Gloves (optional, to avoid staining hands)'
+                ],
+                steps: [
+                    'Setup: Cut postcards into quarters. Mix 1 tbsp turmeric with 1/4 cup rubbing alcohol. Mix 1 tbsp baking soda with 1/4 cup water. Set up on trays.',
+                    'Hook: Ask kids if they like spies or ninjas, then ask if they want to send a secret message!',
+                    'Writing: Using thin brush, dip into baking soda solution, draining excess on cup side. Write or draw on paper (name, star, heart, smiley face, etc.).',
+                    'Drying (20 sec): Have kids pick up paper and fan it to dry. Doesn\'t need to be completely dry.',
+                    'Revealing: Using big brush, dip into turmeric mixture, drain excess. Do a quick pass covering whole paper. Message appears after 5 seconds, clearer after 20 seconds!',
+                    'Explanation: Discuss pH reaction and real-world uses like medical sutures that change color to detect infections.'
+                ],
+                safetyTips: [
+                    'Do on trays - turmeric stains!',
+                    'Bring gloves or avoid getting turmeric on hands',
+                    'Use rubbing alcohol with adult supervision',
+                    'Don\'t let kids use small brushes for turmeric - takes too long and risks hand staining',
+                    'Protect clothing and work surfaces'
+                ],
+                engagementTips: [
+                    'Frame it as spy mission or secret code activity',
+                    'Show how hospitals use pH-changing sutures',
+                    'Let kids write messages to each other',
+                    'Compare who can write the most elaborate hidden picture',
+                    'Explain: baking soda "hides" and turmeric "seeks"',
+                    'Demonstrate first to build anticipation'
+                ],
+                questionsToAsk: [
+                    'What do you think is happening when the message appears?',
+                    'Why does the turmeric change color when it finds the baking soda?',
+                    'Can you think of other places we use color-changing chemistry?',
+                    'How might this be useful in real life?'
+                ]
+            },
+            {
+                id: 'activity-6',
+                title: 'Owl Pellet Dissection',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🦉',
+                shortDescription: 'Discover what owls eat by carefully dissecting owl pellets and finding bones!',
+                fullDescription: 'Students become wildlife detectives by dissecting owl pellets to discover bones and fur from the owl\'s prey. This hands-on biology activity teaches about food chains, predator-prey relationships, and animal anatomy while engaging students in real scientific investigation.',
+                whyItsCool: 'Kids love the detective work of finding hidden bones! It\'s like a treasure hunt with real scientific value. Finding a complete skull is especially exciting. Students get to see actual evidence of what animals eat and connect to real wildlife biology.',
+                learningObjectives: [
+                    'Understand owl digestion and regurgitation',
+                    'Learn about food chains and predator-prey relationships',
+                    'Practice bone identification skills',
+                    'Develop careful observation and handling techniques'
+                ],
+                materials: [
+                    'Sterilized owl pellets (1 per 2-3 students)',
+                    'Dissection trays or plates',
+                    'Tweezers',
+                    'Toothpicks',
+                    'Small storage containers',
+                    'Cotton balls',
+                    'Tape for sealing',
+                    'Markers for labeling',
+                    'Optional: bone identification charts',
+                    'Optional: magnifying glasses'
+                ],
+                steps: [
+                    'Setup: Place one pellet in each tray with tweezers and toothpicks. Prep storage containers with cotton balls inside.',
+                    'Introduction: Explain that owls swallow prey whole but can\'t digest bones/fur, so they regurgitate pellets.',
+                    'Dissection: Have kids carefully break down pellet and search for bones. When found, try to identify what animal and what part.',
+                    'Collection: Place bones in storage container. Tape shut and write name on container.',
+                    'Discussion: What animals did the owl eat? What bones did you find? Compare findings across groups.'
+                ],
+                safetyTips: [
+                    'Pellets are sterilized but still wash hands after',
+                    'Use tools, not bare hands when possible',
+                    'Don\'t put fingers in mouth during activity',
+                    'Supervise younger students with sharp tools',
+                    'Clean work area thoroughly after'
+                ],
+                engagementTips: [
+                    'Skulls are the best finds - celebrate when found!',
+                    'Usually only one skull per pellet, so manage expectations',
+                    'Encourage bone identification using charts',
+                    'Try to make them spend time identifying, not just collecting every bone',
+                    'If pellet has been searched multiple times, help them find hidden small bones',
+                    'Connect to food chains and ecosystems discussion'
+                ],
+                questionsToAsk: [
+                    'What animal do you think this bone came from?',
+                    'How many different animals did this owl eat?',
+                    'Why can\'t owls digest bones?',
+                    'What does this tell us about what owls eat?'
+                ]
+            },
+            {
+                id: 'activity-7',
+                title: 'Science of Sound - String Telephone',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '📞',
+                shortDescription: 'Build string telephones and explore how sound travels through different materials!',
+                fullDescription: 'Students create working string telephones using cups and string, discovering how sound vibrations travel through different materials. This hands-on physics activity demonstrates sound transmission and the properties of vibration in a fun, communicative way.',
+                whyItsCool: 'Kids can actually talk to each other through homemade telephones! It\'s surprising that sound travels so clearly through string. The activity combines building, testing, and real communication, making physics immediately relevant and fun.',
+                learningObjectives: [
+                    'Understand that sound travels as vibrations',
+                    'Learn how different materials transmit sound',
+                    'Discover what happens when vibrations are interrupted',
+                    'Practice scientific observation and hypothesis testing'
+                ],
+                materials: [
+                    'Paper or plastic cups (2 per pair)',
+                    'String or yarn (6-10 feet per pair)',
+                    'Pencils or small nails for poking holes',
+                    'Paper clips',
+                    'Scissors',
+                    'Optional: different materials to test (thin wire, fishing line, ribbon)'
+                ],
+                steps: [
+                    'Prepare cups: Use pencil to poke small hole in bottom center of each cup.',
+                    'Thread string: Push one end of string through hole in each cup. Tie each end to a paperclip to keep string from slipping through.',
+                    'Test telephone: One student takes cup and walks away until string is tight. One person talks into cup while partner listens. Switch roles!',
+                    'Experiment: Have student press on string while you talk - they shouldn\'t hear anything! Test what happens when string is loose vs. tight.',
+                    'Discussion: Why does it work? What happens when you touch the string? How is this like real phones?'
+                ],
+                safetyTips: [
+                    'Supervise hole-poking with sharp objects',
+                    'Keep string away from necks',
+                    'Clear walking space to prevent tripping',
+                    'Use plastic cups for younger students'
+                ],
+                engagementTips: [
+                    'Let pairs send secret messages across the room',
+                    'Try different string materials - which works best?',
+                    'Challenge: how far apart can you get and still hear?',
+                    'Connect to how old phones worked',
+                    'Demonstrate that touching string absorbs vibration energy',
+                    'Create a multi-way telephone with 3+ cups'
+                ],
+                questionsToAsk: [
+                    'How does sound travel from your mouth to your friend\'s ear?',
+                    'What happens when the string is loose?',
+                    'Why does touching the string stop the sound?',
+                    'How is this similar to how your vocal cords work?'
+                ]
+            },
+            {
+                id: 'activity-8',
+                title: 'Foil Boat Float',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '⛵',
+                shortDescription: 'Design aluminum foil boats and discover how many weights they can hold before sinking!',
+                fullDescription: 'Students shape aluminum foil into boats and test how much weight they can hold before sinking. This experiment teaches buoyancy, boat design, and the scientific method through hands-on testing and observation.',
+                whyItsCool: 'Kids love the challenge of beating each other\'s records! Watching the boat slowly fill with weights and finally sink is suspenseful. The immediate feedback helps them understand cause and effect in boat design.',
+                learningObjectives: [
+                    'Understand basic buoyancy principles',
+                    'Learn how boat shape affects floating capacity',
+                    'Discover that shape matters more than material weight',
+                    'Practice making predictions and testing hypotheses'
+                ],
+                materials: [
+                    'Aluminum foil (uniform sheets)',
+                    'Plastic container filled halfway with water',
+                    'Washer weights or pennies',
+                    'Towels for cleanup',
+                    'Optional: rulers for measuring boat dimensions',
+                    'Optional: recording sheets for data'
+                ],
+                steps: [
+                    'Setup: Fill plastic container halfway with water. Rip out uniform foil sheets for each student.',
+                    'Design: Give each child a foil sheet. Ask them to shape it into a boat or tray that can hold weight. Encourage experimentation with different shapes.',
+                    'Test: Place foil boat gently on water. Slowly add washer weights one at a time. Count how many the boat holds before sinking!',
+                    'Redesign (optional, 5 min): Based on results, let students redesign and test again. Can they beat their first attempt?',
+                    'Discussion: Why did some boats hold more? What shapes worked best? How does this relate to real boats?'
+                ],
+                safetyTips: [
+                    'Supervise around water',
+                    'Wipe up spills immediately',
+                    'Foil edges can be sharp - supervise younger students',
+                    'Keep weights away from mouths',
+                    'Ensure container is stable'
+                ],
+                engagementTips: [
+                    'Make it a competition - who can hold the most weights?',
+                    'Track records on a board',
+                    'Discuss real ship design principles',
+                    'Try different materials - what if we used paper?',
+                    'Connect to Archimedes principle in simple terms',
+                    'Show pictures of different boat shapes'
+                ],
+                questionsToAsk: [
+                    'What boat shape do you think will hold the most weight?',
+                    'Why do some boats float and hold more than others?',
+                    'What happens when water gets inside the boat?',
+                    'How do scientists make predictions and test them?'
+                ]
+            },
+            {
+                id: 'activity-9',
+                title: 'Sink or Float Discovery',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🫧',
+                shortDescription: 'Predict which objects will sink or float and discover the science of buoyancy!',
+                fullDescription: 'Students test various objects to see which sink or float, learning about density and buoyancy. They sort objects, make predictions, and discover that floating isn\'t just about weight - it\'s about density!',
+                whyItsCool: 'Kids love making predictions and testing them! The surprises create memorable learning moments. It\'s hands-on, engaging, and connects to real-world ships and submarines.',
+                learningObjectives: [
+                    'Understand basic buoyancy and density concepts',
+                    'Learn that floating depends on density, not just weight',
+                    'Practice making predictions and testing hypotheses',
+                    'Observe and classify objects scientifically'
+                ],
+                materials: [
+                    'Two plastic containers filled halfway with water',
+                    'Third empty container for sorting tested objects',
+                    'Various objects to test (sponge, rock, coin, plastic toys, cork, etc.)',
+                    'Towels for cleanup',
+                    'Optional: prediction sheets'
+                ],
+                steps: [
+                    '**Setup:** Fill two containers halfway with water. Set up third empty container for sorting.',
+                    '**Prediction:** Show each object one at a time. Ask: "Do you think this will sink or float?" Encourage reasoning.',
+                    '**Testing:** Place each object in water and observe. Sort into "sink" and "float" piles in the third container.',
+                    '**Repeat:** Test all items until complete. Discuss surprises and patterns.',
+                    '**Discussion:** Why do some things float? What do floating objects have in common? What makes things sink?'
+                ],
+                safetyTips: [
+                    'Supervise closely around water',
+                    'Keep water level low',
+                    'Wipe spills immediately - slip hazard',
+                    'Use non-breakable objects only',
+                    'Don\'t let students drink test water'
+                ],
+                engagementTips: [
+                    'Include surprising items that challenge assumptions',
+                    'Make it a game - keep score of correct predictions',
+                    'Connect to ships: "How do giant metal ships float?"',
+                    'Try: "Can you make this clay float?"',
+                    'Discuss submarines: how do they sink and float on purpose?',
+                    'Sort objects by sink/float then find patterns'
+                ],
+                questionsToAsk: [
+                    'Why did this object float/sink?',
+                    'What do all the floating objects have in common?',
+                    'Can something heavy float? Can something light sink?',
+                    'How do scientists make predictions and test them?'
+                ]
+            },
+            {
+                id: 'activity-10',
+                title: 'Balloon Rocket',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🚀',
+                shortDescription: 'Launch balloon rockets and discover Newton\'s Third Law of Motion!',
+                fullDescription: 'Students create balloon-powered rockets that zoom along strings, demonstrating Newton\'s Third Law. They learn about action-reaction forces, test different variables, and see physics in action through exciting races!',
+                whyItsCool: 'Rockets zooming across the room! Kids love the speed, competition, and hands-on building. The immediate visual feedback helps them understand force and motion. Plus, it connects to real rockets!',
+                learningObjectives: [
+                    'Understand Newton\'s Third Law (action-reaction)',
+                    'Learn about propulsion and force',
+                    'Practice scientific experimentation',
+                    'Test variables to improve performance'
+                ],
+                materials: [
+                    'Long string (6-10 feet per group)',
+                    'Balloons (round or long)',
+                    'Plastic straws',
+                    'Tape',
+                    'Scissors',
+                    'Two chairs or tables for tying string',
+                    'Optional: markers for decorating',
+                    'Optional: extra balloons (some may pop)'
+                ],
+                steps: [
+                    '**Setup:** Tie string between two chairs, pulled tight. Thread straw onto string before tying second end.',
+                    '**Hook:** Ask: "Have you ever wanted to launch your own rocket? What if you could build one using air instead of fire?"',
+                    '**Building:** Inflate balloon (don\'t tie). Pinch end closed. Tape balloon to straw. Opening should point toward start.',
+                    '**Launch!:** Let go and watch it zoom! Try different balloon sizes, more/less air, string angles.',
+                    '**Experiment:** What makes it go farther? Faster? Can you hit a target?'
+                ],
+                safetyTips: [
+                    'Do in open space or hallway',
+                    'Keep balloon opening away from faces',
+                    'Bring extra balloons in case some pop',
+                    'Make sure string is secure',
+                    'Clear flight path of obstacles'
+                ],
+                engagementTips: [
+                    'Count down: "3-2-1-BLAST OFF!"',
+                    'Let kids decorate their rockets',
+                    'Race two balloons at once',
+                    'Connect to real rockets and Newton\'s Laws',
+                    'Try different balloon types',
+                    'Explain: hot gases out the back = rocket goes forward!'
+                ],
+                questionsToAsk: [
+                    'Why does the balloon move forward when air rushes backward?',
+                    'What happens with more air? Less air?',
+                    'How is this like a real rocket?',
+                    'What could you change to make it faster?'
+                ]
+            },
+            {
+                id: 'activity-11',
+                title: 'Reaction Time Lab',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '⚡',
+                shortDescription: 'Measure your reaction time using a simple ruler drop test!',
+                fullDescription: 'Students measure human reaction time by catching a falling ruler, learning about the nervous system, signal processing, and how our brains and bodies work together. They discover that practice can improve reaction time!',
+                whyItsCool: 'It\'s a competition! Kids love comparing reaction times and trying to beat their scores. It\'s simple, fun, and teaches real neuroscience. The connection to video games and sports makes it relevant to their lives.',
+                learningObjectives: [
+                    'Understand how the nervous system works',
+                    'Learn about signal processing from eyes to brain to muscles',
+                    'Practice measurement and data recording',
+                    'Discover that reaction time can improve with practice'
+                ],
+                materials: [
+                    'Rulers (2-3 for groups)',
+                    'Reaction time chart/table (converts cm to milliseconds)',
+                    'Paper for recording',
+                    'Pencils'
+                ],
+                steps: [
+                    '**Introduction:** Explain reaction time - the delay between seeing something and reacting. Discuss nervous system pathway.',
+                    '**Demonstration:** Hold ruler at 0 cm mark vertically. Partner places thumb and finger at bottom (not touching). Drop without warning!',
+                    '**Testing:** Each student does 3 trials. Record where they caught the ruler (in cm). Use reaction time chart to convert to milliseconds.',
+                    '**Analysis:** Find best time. Compare across students. Did you improve with practice?'
+                ],
+                safetyTips: [
+                    'Drop ruler, don\'t throw it',
+                    'Keep fingers clear of ruler edge',
+                    'Do in controlled space',
+                    'Use plastic rulers if available'
+                ],
+                engagementTips: [
+                    'Make it competitive - who has fastest reaction time?',
+                    'Try after exercise - does it change?',
+                    'Test dominant vs non-dominant hand',
+                    'Connect to sports, gaming, driving',
+                    'Explain: eyes see → brain processes → muscles react',
+                    'Try with distractions - does it slow you down?'
+                ],
+                questionsToAsk: [
+                    'What happened between seeing the ruler drop and catching it?',
+                    'Did your reaction time improve with practice?',
+                    'When is fast reaction time important in life?',
+                    'What might slow down your reaction time?'
+                ]
+            },
+            {
+                id: 'activity-12',
+                title: 'Yuck or Yum - Cilantro Tasting',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🌿',
+                shortDescription: 'Discover why some people think cilantro tastes like soap while others love it!',
+                fullDescription: 'Students taste cilantro and discover that genetics affects taste perception. Some people have a gene that makes cilantro taste soapy, while others taste it as fresh and citrusy. This activity teaches about genetics, senses, and human variation.',
+                whyItsCool: 'Kids are amazed that people can taste the same thing so differently! It validates their own experiences ("I\'m not weird - it\'s my genes!") and teaches real genetics in a fun, memorable way.',
+                learningObjectives: [
+                    'Understand that genetics influences sense perception',
+                    'Learn about the OR6A2 gene and taste receptors',
+                    'Discover that human senses vary naturally',
+                    'Practice descriptive observation and vocabulary'
+                ],
+                materials: [
+                    'Fresh cilantro (small pieces for each student)',
+                    'Napkins',
+                    'Water for rinsing',
+                    'Chart for recording responses',
+                    'Optional: pictures of cilantro plant'
+                ],
+                steps: [
+                    '**Setup:** Give each student a small cilantro piece.',
+                    '**Observation:** First look and smell. What do you notice? Describe without tasting.',
+                    '**Tasting:** Take a small bite and chew slowly. Describe the taste: soapy? fresh? citrusy? bitter?',
+                    '**Survey:** Record responses. How many taste soap? How many taste fresh? Chart results.',
+                    '**Explanation:** Discuss OR6A2 gene, aldehyde molecules, and why genetics affects taste perception.'
+                ],
+                safetyTips: [
+                    'Check for food allergies',
+                    'Use fresh, washed cilantro',
+                    'Optional tasting - no forcing',
+                    'Provide water for rinsing',
+                    'Wash hands before activity'
+                ],
+                engagementTips: [
+                    'Validate all responses - no right/wrong answer',
+                    'Connect to family: "Does your family like cilantro?"',
+                    'Explain: it\'s your DNA, not your imagination!',
+                    'Discuss other foods people disagree on',
+                    'Show that science studies human variation',
+                    'Make a class graph of responses'
+                ],
+                questionsToAsk: [
+                    'How would you describe the taste?',
+                    'Why might people taste it differently?',
+                    'What other foods do people disagree about?',
+                    'How do genes affect what we experience?'
+                ]
+            },
+            {
+                id: 'activity-13',
+                title: 'My Senses - Skittles & Afterimage',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '👁️',
+                shortDescription: 'Explore how smell affects taste and how your eyes create afterimages!',
+                fullDescription: 'Students discover that flavor is actually a combination of taste AND smell through a Skittles experiment. Then they experience visual afterimages using an inverted American flag, learning how our senses can trick us!',
+                whyItsCool: 'Two mind-blowing demonstrations! Kids are shocked they can\'t taste Skittles without smell, and seeing the "ghost" American flag appear on white paper feels like magic. It shows how our brains create our reality.',
+                learningObjectives: [
+                    'Understand that flavor = taste + smell',
+                    'Learn how color receptors in eyes get "tired"',
+                    'Discover how brain fills in missing information',
+                    'Practice controlled experimentation with senses'
+                ],
+                materials: [
+                    'Skittles (various colors)',
+                    'Inverted American flag image (yellow stripes, black stars on green)',
+                    'White paper',
+                    'Timer or clock',
+                    'Optional: blindfolds'
+                ],
+                steps: [
+                    '**Part 1 - Skittles:** Close eyes, pinch nose. Chew Skittle while holding nose. Can you guess flavor? Release nose - flavor appears! Discuss smell+taste=flavor.',
+                    '**Part 2 - Afterimage:** Stare at dot on inverted flag for 2 minutes (don\'t look away!). Then look at white paper. See American flag in correct colors!',
+                    '**Discussion:** Why did flavor "appear" when you released your nose? How did your brain create the flag image?'
+                ],
+                safetyTips: [
+                    'Check candy allergies',
+                    'Hand washing before/after',
+                    'Staring exercise may strain eyes - optional breaks',
+                    'No sharing Skittles'
+                ],
+                engagementTips: [
+                    'Make Skittles part a competition/guessing game',
+                    'Connect to stuffy nose experience',
+                    'Explain: tired blue receptors = you see red!',
+                    'Try afterimage with other inverted images',
+                    'Discuss optical illusions',
+                    'Link to how brain interprets sensory input'
+                ],
+                questionsToAsk: [
+                    'Could you taste the Skittle with your nose pinched?',
+                    'What changed when you released your nose?',
+                    'Why did the flag appear on white paper?',
+                    'How does your brain create what you experience?'
+                ]
+            },
+            {
+                id: 'activity-14',
+                title: 'Wacky Water Lab',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '💧',
+                shortDescription: 'Discover surface tension and hydrophobic vs hydrophilic surfaces through water experiments!',
+                fullDescription: 'Students explore water\'s special properties through two experiments: dropping water on pennies to test surface tension, and racing water droplets across different surfaces to learn about hydrophobic and hydrophilic materials.',
+                whyItsCool: 'Water behaves in surprising ways! Kids are amazed how many drops a penny can hold, and racing water droplets is competitive fun. These simple experiments reveal invisible forces at work.',
+                learningObjectives: [
+                    'Understand surface tension - water molecules "hold hands"',
+                    'Learn about hydrophobic (water-repelling) surfaces',
+                    'Discover hydrophilic (water-attracting) surfaces',
+                    'Practice careful observation and counting'
+                ],
+                materials: [
+                    'Pennies (1 per student)',
+                    'Droppers or pipettes',
+                    'Water',
+                    'Wax paper',
+                    'Glass slides or smooth plastic',
+                    'Toothpicks',
+                    'Towels for cleanup',
+                    'Data recording sheets'
+                ],
+                steps: [
+                    '**Part 1 - Penny Challenge:** Place penny flat. Use dropper to add water drops one at a time. Count how many drops penny holds before spilling! Make it a competition.',
+                    '**Part 2 - Droplet Race:** Place water drop on wax paper. Place another on glass. Use toothpick to pull droplets - race them! Which surface lets water travel faster?',
+                    '**Discussion:** Explain surface tension (water molecules stick together) and hydrophobic/hydrophilic (wax repels, glass attracts).'
+                ],
+                safetyTips: [
+                    'Wipe spills immediately',
+                    'Work over trays or towels',
+                    'Handle glass slides carefully',
+                    'Supervise younger students with droppers'
+                ],
+                engagementTips: [
+                    'Predict: "How many drops will fit?"',
+                    'Keep track of records',
+                    'Make it competitive',
+                    'Try different coins - does size matter?',
+                    'Add soap to water - what happens to surface tension?',
+                    'Connect to rain on car windshield'
+                ],
+                questionsToAsk: [
+                    'Why does water form a dome on the penny?',
+                    'Which surface lets water move faster?',
+                    'What does hydrophobic mean? Hydrophilic?',
+                    'Where do you see surface tension in real life?'
+                ]
+            },
+            {
+                id: 'activity-15',
+                title: 'Strong Structures - Paper Bridge',
+                category: 'engineering',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🌉',
+                shortDescription: 'Engineer paper bridges and discover which folding techniques make the strongest structures!',
+                fullDescription: 'Students build bridges from paper using different folding techniques, then test how many pennies each design can hold. This engineering challenge teaches about structural strength, load distribution, and the power of shapes.',
+                whyItsCool: 'A simple piece of paper becomes an engineering challenge! Kids love the competition and are shocked that folding makes paper so much stronger. Watching bridges collapse (or succeed!) teaches real engineering.',
+                learningObjectives: [
+                    'Understand that shape affects strength',
+                    'Learn about load distribution',
+                    'Discover engineering design process',
+                    'Practice testing and iteration'
+                ],
+                materials: [
+                    'Paper sheets (same size for all)',
+                    'Two books placed a few inches apart',
+                    'Pennies for weight testing',
+                    'Recording sheets',
+                    'Optional: tape for advanced designs'
+                ],
+                steps: [
+                    '**Test 1:** Fold paper in half. Place between books as bridge. Add pennies until collapse. Count!',
+                    '**Test 2:** Try different folding (accordion, multiple folds, etc.). Test again. Count pennies.',
+                    '**Experiment:** Let kids create their own folding methods. Test all designs.',
+                    '**Competition:** Keep track of highest record. Motivate kids to beat it!',
+                    '**Discussion:** What designs worked best? Why? Introduce concept of triangles/arches as strong shapes.'
+                ],
+                safetyTips: [
+                    'Watch for paper cuts',
+                    'Supervise penny handling with young kids',
+                    'Ensure books are stable',
+                    'Clean up fallen pennies'
+                ],
+                engagementTips: [
+                    'Make it a competition with prizes',
+                    'Track records on board',
+                    'Connect to real bridge engineering',
+                    'Show pictures of different bridge types',
+                    'Ask: "What if we could use tape?"',
+                    'Discuss Golden Gate Bridge, Brooklyn Bridge'
+                ],
+                questionsToAsk: [
+                    'Which folding style held the most pennies?',
+                    'Why does folding make paper stronger?',
+                    'What patterns did you notice?',
+                    'How do real engineers make strong bridges?'
+                ]
+            },
+            {
+                id: 'activity-16',
+                title: 'Magic Drawing - Light Refraction',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '✏️',
+                shortDescription: 'Draw pictures that flip and change when viewed through a glass of water!',
+                fullDescription: 'Students draw simple images (arrows, faces, shapes) and view them through a glass of water to see how light refraction makes them appear to flip or change. This optical experiment teaches about how light bends through different materials.',
+                whyItsCool: 'It\'s like magic! Kids are amazed when arrows flip direction or smiley faces look different through water. The immediate visual surprise makes physics concepts memorable and fun.',
+                learningObjectives: [
+                    'Understand that light bends (refracts) through water',
+                    'Learn about how our eyes interpret bent light',
+                    'Discover real-world applications of refraction',
+                    'Practice observation and experimentation'
+                ],
+                materials: [
+                    'Clear glass filled with water',
+                    'Small pieces of paper for drawing',
+                    'Pens or markers',
+                    'Optional: different shaped glasses to compare'
+                ],
+                steps: [
+                    '**Demonstration:** Draw two arrows on paper, both pointing same direction (→ →). Hold behind glass of water. Ask kids to look through water - arrows flip!',
+                    '**Questions:** "Which way are the arrows pointing now?" "Does it change if we move the glass closer or farther?" "What happens when you move your head?"',
+                    '**Let Kids Draw:** Give each kid paper and pen. Have them draw whatever they like (smiley faces, shapes, arrows in different directions).',
+                    '**Experiment:** Let them experiment by looking at their drawings through the glass and noticing what changes!'
+                ],
+                safetyTips: [
+                    'Handle glass carefully',
+                    'Wipe up water spills',
+                    'Supervise younger students with glass',
+                    'Use plastic cups as alternative'
+                ],
+                engagementTips: [
+                    'Try different drawings to see what changes most',
+                    'Use different shaped glasses',
+                    'Move glass closer/farther - what happens?',
+                    'Connect to eyeglasses and how they help vision',
+                    'Explain: light bends when it goes through water',
+                    'Challenge: can you draw something that looks the same?'
+                ],
+                questionsToAsk: [
+                    'What happened to your drawing when you looked through water?',
+                    'Why do you think the arrows flipped?',
+                    'Does it change when you move the glass?',
+                    'Where else does light bend like this?'
+                ]
+            },
+            {
+                id: 'activity-17',
+                title: 'Fingerprints and Forensics',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🔍',
+                shortDescription: 'Learn how to collect fingerprints and compare them to identify patterns, just like a forensic scientist!',
+                fullDescription: 'Students collect their own fingerprints using pencil graphite and tape, then examine them with magnifying glasses to identify patterns (loops, whorls, arches). This activity teaches about unique biological features and forensic science methods.',
+                whyItsCool: 'Kids love pretending to be detectives! The fact that everyone\'s fingerprints are unique is fascinating. It\'s hands-on, uses real forensic techniques, and connects science to crime-solving they see on TV.',
+                learningObjectives: [
+                    'Understand that fingerprints are unique to each person',
+                    'Learn to identify fingerprint patterns (loops, whorls, arches)',
+                    'Practice careful observation and pattern recognition',
+                    'Discover real-world applications of forensic science'
+                ],
+                materials: [
+                    'Pencils',
+                    'Clear tape',
+                    'Fingerprint printouts (examples of loops, whorls, arches)',
+                    'Magnifying glasses',
+                    'Activity sheets for sticking tape'
+                ],
+                steps: [
+                    '**Collect fingerprint:** Roll finger tip lightly on pencil lead to pick up graphite. Press finger firmly onto clear tape. Stick tape onto activity sheet.',
+                    '**Examine:** Use magnifying glass to look closely at lines and patterns. Compare to printed examples of loops, whorls, and arches.',
+                    '**Identify:** Try to identify which pattern your fingerprint matches. Discuss findings with others.'
+                ],
+                safetyTips: [
+                    'Don\'t press too hard on pencil lead',
+                    'Supervise younger students with tape',
+                    'Ensure good lighting for observation',
+                    'Keep magnifying glasses safe'
+                ],
+                engagementTips: [
+                    'Help kids roll fingers without smudging',
+                    'Encourage close observation through magnifying glasses',
+                    'Ask: "What shapes do you notice?" "Does your print match a loop, whorl, or arch?"',
+                    'Make it fun - kids love being detectives',
+                    'Compare fingerprints between family members',
+                    'Discuss how police use fingerprints'
+                ],
+                questionsToAsk: [
+                    'What patterns do you see in your fingerprint?',
+                    'Does anyone else have the same fingerprint as you?',
+                    'Why are fingerprints useful for detectives?',
+                    'What other unique features do humans have?'
+                ]
+            },
+            {
+                id: 'activity-18',
+                title: 'Static Electricity Butterfly',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '🦋',
+                shortDescription: 'Explore how static electricity can make objects move without touching them, just like a magician!',
+                fullDescription: 'Students create static electricity by rubbing balloons and use it to make paper butterflies "dance" and move without touching them. This activity demonstrates invisible forces and electrical charges in a magical, hands-on way.',
+                whyItsCool: 'It looks like magic! Kids are amazed they can move things without touching them. The butterfly "dancing" toward the balloon is mesmerizing. It\'s a perfect introduction to invisible forces.',
+                learningObjectives: [
+                    'Understand that static electricity creates invisible forces',
+                    'Learn how rubbing transfers electric charges',
+                    'Discover that opposite charges attract',
+                    'Practice observation and experimentation'
+                ],
+                materials: [
+                    'Tissue paper or lightweight paper butterflies (pre-cut)',
+                    'Balloons',
+                    'Tape or string (to anchor butterflies, optional)'
+                ],
+                steps: [
+                    '**Prepare butterfly:** Place paper butterfly on flat surface (table or tray). Make sure it can move freely.',
+                    '**Charge balloon:** Rub balloon vigorously on hair, sweater, or cloth for 10-15 seconds. Explain this creates static electricity.',
+                    '**Make butterfly move:** Slowly bring charged balloon close to butterfly without touching. Watch wings lift and "dance" toward balloon! Move balloon around - side to side, up and down.',
+                    '**Experiment:** What happens if you rub balloon less? More? Different sized balloons? Can you make butterfly jump?'
+                ],
+                safetyTips: [
+                    'Help kids rub balloon safely - no too-fast movements',
+                    'Don\'t rub hair too hard',
+                    'Keep balloons away from faces',
+                    'Watch for balloon allergies'
+                ],
+                engagementTips: [
+                    'Encourage observation: "What do you notice about how it moves?"',
+                    'Ask kids to predict before bringing balloon close',
+                    'Let them try multiple times - every attempt is an experiment!',
+                    'Connect to lightning (nature\'s static electricity)',
+                    'Try with other lightweight objects',
+                    'Explain: balloon steals electrons, becomes negatively charged'
+                ],
+                questionsToAsk: [
+                    'What makes the butterfly move?',
+                    'Why doesn\'t it work if you don\'t rub the balloon?',
+                    'What happens when the balloon gets closer?',
+                    'Where else do you see static electricity?'
+                ]
+            },
+            {
+                id: 'activity-19',
+                title: 'Static Electricity with PVC Pipe',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                icon: '⚡',
+                shortDescription: 'Explore static electricity by making confetti jump and move using a PVC pipe!',
+                fullDescription: 'Students create static electricity by rubbing PVC pipes and use them to make confetti jump, dance, and move without touching. This dramatic demonstration shows electrical forces at work.',
+                whyItsCool: 'Confetti jumping through the air looks amazing! Kids love the power they have to control confetti without touching it. The visual effect is dramatic and the science is clear.',
+                learningObjectives: [
+                    'Understand static electricity and charge transfer',
+                    'Learn how charged objects attract neutral objects',
+                    'Observe forces acting at a distance',
+                    'Practice scientific experimentation'
+                ],
+                materials: [
+                    'PVC pipes (1-2 per table)',
+                    'Small pieces of confetti or tissue paper',
+                    'Optional: balloons for extra static'
+                ],
+                steps: [
+                    '**Setup:** Sprinkle small pile of confetti on table. Make sure confetti is lightweight.',
+                    '**Charge PVC pipe:** Rub pipe on hair, sweater, or cloth for 10-15 seconds. Explain: this transfers electric charges to pipe.',
+                    '**Make confetti move:** Slowly bring charged pipe close to confetti without touching. Watch it jump, dance, and stick to pipe! Move pipe around.',
+                    '**Experiment:** Try rubbing more or less - what happens? Can you move confetti from one pile to another? Different confetti sizes?'
+                ],
+                safetyTips: [
+                    'Don\'t touch confetti with pipe - works best from small distance',
+                    'Supervise pipe handling',
+                    'Keep confetti away from faces',
+                    'Clean up scattered confetti'
+                ],
+                engagementTips: [
+                    'Encourage prediction before moving pipe',
+                    'Ask: "What do you notice about how the confetti reacts?"',
+                    'Let them try multiple times - each trial is an experiment',
+                    'Make it competitive - who can pick up most confetti?',
+                    'Connect to how dust sticks to TV screens',
+                    'Try with other materials (paper scraps, puffed rice)'
+                ],
+                questionsToAsk: [
+                    'Why does the confetti jump toward the pipe?',
+                    'What happens if you don\'t rub the pipe?',
+                    'How far away can the pipe be and still work?',
+                    'Where else do you see static electricity?'
+                ]
+            },
+            {
+                id: 'activity-20',
+                title: 'Ocean Acidification Lab',
+                category: 'environmental-science',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                icon: '🌊',
+                shortDescription: 'Observe how carbon dioxide from your breath can make water acidic, just like what happens in the oceans!',
+                fullDescription: 'Students blow CO2 from their breath into BTB indicator solution and watch it change color, demonstrating how carbon dioxide makes water acidic. This connects to ocean acidification and its impact on marine life with shells.',
+                whyItsCool: 'Seeing your breath change the water color is amazing! The connection to real ocean acidification makes it meaningful. Students realize their actions relate to global environmental issues.',
+                learningObjectives: [
+                    'Understand that CO2 makes water acidic',
+                    'Learn about pH indicators',
+                    'Discover how ocean acidification affects marine life',
+                    'Connect personal actions to environmental impact'
+                ],
+                materials: [
+                    'BTB (bromothymol blue) solution',
+                    'Straws',
+                    'Beakers or clear cups',
+                    'Optional: pictures of sea stars, clams, shelled animals'
+                ],
+                steps: [
+                    '**Pre-questions:** "What gas is released when you burn fossil fuels? When you burn food?" (Answer: CO2 for both)',
+                    '**Exercise:** Jog or jump in place for 30 seconds to get heart rate up.',
+                    '**Experiment:** When breathing hard, insert straw into blue liquid and blow gently, making bubbles. IMPORTANT: Blow out only, don\'t suck in. Observe color change.',
+                    '**Explanation:** Discuss: CO2 + water = carbonic acid. BTB is pH indicator: Yellow=acidic, Green=neutral, Blue=basic.'
+                ],
+                safetyTips: [
+                    'Kids may accidentally swallow tiny bit of BTB - relatively non-toxic but supervise closely',
+                    'Keep 1:1 ratio of volunteers to participants',
+                    'Blow out only, don\'t suck in',
+                    'Try not to spill liquid'
+                ],
+                engagementTips: [
+                    'Connect to environmental impact: "In 2024, humans released 41 billion tons of CO2. Oceans absorb 1/4 of this."',
+                    'Show pictures of shelled animals: clams, oysters, coral, sea urchins',
+                    'Explain: acidic oceans make it harder for them to form shells',
+                    'Discuss: "Think about what you saw when you blew in the straw. That same CO2 makes oceans more acidic."',
+                    'Connect to climate change and carbon footprint'
+                ],
+                questionsToAsk: [
+                    'What happened to the water color?',
+                    'Why did blowing in the straw change the color?',
+                    'What animals could be affected by ocean acidification?',
+                    'What can we do to reduce CO2 emissions?'
+                ]
+            },
+            {
+                id: 'activity-21',
+                title: 'Catapult Engineering',
+                category: 'engineering',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                icon: '🎯',
+                shortDescription: 'Build working catapults and explore projectile motion!',
+                fullDescription: 'Students design and build catapults using simple materials, then test them to explore projectile motion, stored energy, and lever mechanics. Teams compete to launch objects farthest or hit targets with accuracy.',
+                whyItsCool: 'Launch things across the room! Students love the power and drama of catapults. The competition aspect is highly engaging. Plus, they\'re building real engineering devices from history!',
+                learningObjectives: [
+                    'Understand potential and kinetic energy',
+                    'Learn about levers and fulcrums',
+                    'Explore projectile motion and angles',
+                    'Practice iterative engineering design'
+                ],
+                materials: [
+                    'Popsicle sticks or tongue depressors',
+                    'Rubber bands',
+                    'Plastic spoons',
+                    'Glue or tape',
+                    'Small marshmallows or pom-poms (projectiles)',
+                    'Measuring tape',
+                    'Targets (cups, buckets, drawn targets)',
+                    'Optional: plastic bottle caps for basket'
+                ],
+                steps: [
+                    'Introduction: Show pictures of medieval catapults. Explain how they store energy in tension. Demonstrate lever principle.',
+                    'Build: Stack popsicle sticks, secure with rubber bands. Attach spoon as launcher. Experiment with designs - where should fulcrum be?',
+                    'Test and refine: Launch marshmallows! Measure distance. Adjust rubber band tension, fulcrum position, launch angle.',
+                    'Competition: Distance challenge! Accuracy challenge! Can you hit a target? Land in a cup?',
+                    'Analysis: Which designs worked best? Why? What would you change?'
+                ],
+                safetyTips: [
+                    'Only launch soft projectiles (marshmallows, pom-poms)',
+                    'Never aim at people',
+                    'Clear launch zone before firing',
+                    'Wear safety glasses if using rubber bands under high tension',
+                    'Supervise younger students with rubber bands'
+                ],
+                engagementTips: [
+                    'Set up target zones with points',
+                    'Create castle towers to knock down',
+                    'Show videos of trebuchets and catapults',
+                    'Compare different fulcrum positions scientifically',
+                    'Connect to history: how catapults were used in wars',
+                    'Try different projectiles: which flies farthest?'
+                ],
+                questionsToAsk: [
+                    'Where is the energy stored in your catapult?',
+                    'What happens if you move the fulcrum?',
+                    'At what angle should you launch for maximum distance?',
+                    'How could you make it launch farther?'
+                ]
+            }
+        ];
+
+        // Load activities into grid
+        function loadActivities(filter = 'all') {
+            const grid = document.getElementById('activitiesGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filteredActivities = activities;
+            
+            if (filter !== 'all') {
+                filteredActivities = activities.filter(a => a.category === filter);
+            }
+            
+            if (searchTerm) {
+                filteredActivities = filteredActivities.filter(a => 
+                    a.title.toLowerCase().includes(searchTerm) ||
+                    a.shortDescription.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            grid.innerHTML = filteredActivities.map(activity => `
+                <div class="activity-card" onclick="openActivityModal('${activity.id}')">
+                    <div class="activity-icon">${activity.icon}</div>
+                    <h3>${activity.title}</h3>
+                    <div class="activity-meta">
+                        <span class="meta-tag category">${activity.category}</span>
+                        <span class="meta-tag">${activity.ageRange}</span>
+                    </div>
+                    <p>${activity.shortDescription}</p>
+                    <div class="activity-difficulty">Difficulty: ${activity.difficulty}</div>
+                </div>
+            `).join('');
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                loadActivities(this.dataset.filter);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            loadActivities(activeFilter);
+        });
+
+        // Open activity modal
+        function openActivityModal(activityId) {
+            const activity = activities.find(a => a.id === activityId);
+            const modal = document.getElementById('activityModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <h2>${activity.icon} ${activity.title}</h2>
+                <div class="activity-meta">
+                    <span class="meta-tag category">${activity.category}</span>
+                    <span class="meta-tag">${activity.difficulty}</span>
+                    <span class="meta-tag">${activity.ageRange}</span>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Overview</h3>
+                    <p>${activity.fullDescription}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Why It's Cool</h3>
+                    <p>${activity.whyItsCool}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        ${activity.learningObjectives.map(obj => `<li>${obj}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        ${activity.materials.map(mat => `<li>${mat}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Step-by-Step Instructions</h3>
+                    <ol>
+                        ${activity.steps.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                </div>
+                
+                ${activity.safetyTips ? `
+                <div class="modal-section">
+                    <div class="safety-warning">
+                        <strong>⚠️ Safety Tips:</strong>
+                        <ul>
+                            ${activity.safetyTips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="modal-section">
+                    <h3>Engagement Tips</h3>
+                    <ul>
+                        ${activity.engagementTips.map(tip => `<li>${tip}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Questions to Ask Students</h3>
+                    <ul>
+                        ${activity.questionsToAsk.map(q => `<li>${q}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="window.print()">📄 Print Activity</button>
+                    <button class="btn btn-secondary" onclick="shareActivity('${activity.id}')">🔗 Share</button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('activityModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function shareActivity(activityId) {
+            const url = window.location.href.split('#')[0] + '#activity-' + activityId;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'SPARK Activity',
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('activityModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        loadActivities();
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Team Carousel Functionality
+        const teamMembers = [
+            {
+                name: 'Stella Shih',
+                role: 'Club President',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Club President',
+                bio: 'When reflecting on my drive to learn and create, I can trace back to memories from 5th grade. Simple experiments such as testing dry ice and sketching planets to scale left a lasting impact on me. I created Science SPARK club to combine my interest in science and my passion for working with kids. So far, it\'s been one of the most rewarding activities I\'ve been involved with in high school!',
+                image: 'media/stella.jpg'
+            },
+            {
+                name: 'Iniya Srinivasan',
+                role: 'Active Volunteer',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'I joined SPARK because growing up, I used to love doing science experiments and I wanted to share that excitement with little kids.',
+                image: 'media/iniya'
+            },
+            {
+                name: 'Eliza Bell',
+                role: 'Active Volunteer',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'I joined SPARK because I wanted to help children find ways to enjoy and be curious about STEM. SPARK gives me the opportunity to support younger students while also growing my own leadership skills.',
+                image: 'media/eliza.jpg'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            },
+            {
+                name: 'Coming Soon',
+                role: 'Active Volunteer',
+                grade: 'Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: 'We are still collecting information about our amazing volunteers. Check back soon to learn more about this team member!',
+                image: 'media/team.JPEG'
+            }
+        ];
+
+        let currentSlideIndex = 0;
+
+        function renderCarousel() {
+            const member = teamMembers[currentSlideIndex];
+            const slideHTML = `
+                <div class="carousel-image">
+                    <img src="${member.image}" alt="${member.name}" style="height: 450px; width: 100%; object-fit: cover; border-radius: 8px;">
+                </div>
+                <div class="carousel-description">
+                    <span class="member-badge">${member.badge}</span>
+                    <h3>${member.name}</h3>
+                    <p class="member-role">${member.grade}</p>
+                    <p class="member-bio">${member.bio}</p>
+                </div>
+            `;
+
+            const carouselSlide = document.querySelector('.carousel-slide');
+            if (carouselSlide) {
+                carouselSlide.innerHTML = slideHTML;
+            }
+
+            updateDots();
+        }
+
+        function moveCarousel(direction) {
+            currentSlideIndex += direction;
+
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = teamMembers.length - 1;
+            } else if (currentSlideIndex >= teamMembers.length) {
+                currentSlideIndex = 0;
+            }
+
+            renderCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            renderCarousel();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize carousel on page load
+        if (document.querySelector('.carousel-slide')) {
+            renderCarousel();
+
+            // Update dots to match number of team members
+            const dotsContainer = document.getElementById('carouselDots');
+            if (dotsContainer) {
+                dotsContainer.innerHTML = teamMembers.map((_, index) =>
+                    `<span class="dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></span>`
+                ).join('');
+            }
+        }
+    </script>
+</body>
+</html>

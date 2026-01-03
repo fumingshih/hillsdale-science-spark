@@ -1,0 +1,3236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARK - Science Program Advancing Real Knowledge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-yellow: #FDB913;
+            --color-yellow-dark: #E5A609;
+            --color-teal: #06b6d4;
+            --color-teal-dark: #0891b2;
+            --color-coral: #ff6b6b;
+            --color-purple: #a78bfa;
+            --color-bg: #ffffff;
+            --color-bg-light: #f8fafc;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            --color-border: #e2e8f0;
+            --font-heading: 'Manrope', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            line-height: 1.6;
+            background: var(--color-bg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--color-yellow);
+            letter-spacing: -0.02em;
+            text-shadow: 2px 2px 0 var(--color-yellow-dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-teal);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-teal);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--color-bg-light) 0%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(253, 185, 19, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--color-text);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-content h1 .highlight {
+            color: var(--color-yellow);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-content h1 .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 8px;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: var(--color-yellow);
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--color-teal);
+            color: white;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--color-teal-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--color-teal);
+            border: 2px solid var(--color-teal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--color-teal);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 1s ease-out 0.6s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-lightbulb {
+            width: 100%;
+            max-width: 400px;
+            filter: drop-shadow(0 10px 30px rgba(253, 185, 19, 0.3));
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--color-teal);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--color-yellow);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Mission Section */
+        #mission {
+            background: var(--color-bg-light);
+        }
+
+        /* Team Section Styles */
+        #team {
+            background: white;
+        }
+
+        .tier-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Group Photos Section */
+        .group-photos-section {
+            margin-bottom: 5rem;
+        }
+
+        .group-photo-placeholder {
+            background: var(--color-bg-light);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .group-photo-placeholder .placeholder-img {
+            border-radius: 12px;
+        }
+
+        /* Team Carousel Section */
+        .team-carousel-section {
+            margin-bottom: 4rem;
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .carousel-slide {
+            background: var(--color-bg-light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            min-height: 500px;
+        }
+
+        .carousel-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel-description {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .member-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: var(--color-yellow);
+            color: var(--color-text);
+            width: fit-content;
+        }
+
+        .carousel-description h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin: 0;
+        }
+
+        .member-role {
+            font-size: 1.1rem;
+            color: var(--color-teal);
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .member-bio {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .carousel-btn {
+            background: var(--color-teal);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+            flex-shrink: 0;
+        }
+
+        .carousel-btn:hover {
+            background: var(--color-teal-dark);
+            transform: scale(1.1);
+        }
+
+        .carousel-btn:active {
+            transform: scale(0.95);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--color-border);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .dot.active {
+            background: var(--color-teal);
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .dot:hover {
+            background: var(--color-teal);
+        }
+
+        .carousel-note {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* Join Team CTA */
+        .join-team-cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-teal) 0%, var(--color-purple) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .join-team-cta h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .join-team-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .join-team-cta .btn-primary {
+            background: white;
+            color: var(--color-teal);
+            font-weight: 700;
+        }
+
+        .join-team-cta .btn-primary:hover {
+            background: var(--color-yellow);
+            color: var(--color-text);
+        }
+
+        .mission-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .mission-text h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 1rem;
+        }
+
+        .mission-text p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .mission-points {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .mission-points li {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: white;
+            border-left: 4px solid var(--color-coral);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .mission-points li::before {
+            content: '⚡';
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .mission-image {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--color-yellow) 0%, var(--color-coral) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Past Events Section */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--color-purple) 0%, var(--color-teal) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-date {
+            display: inline-block;
+            background: var(--color-bg-light);
+            color: var(--color-teal);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .event-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--color-text);
+        }
+
+        .event-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+        }
+
+        .event-stats span::before {
+            margin-right: 0.4rem;
+        }
+
+        .event-description {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .event-testimonial {
+            background: var(--color-bg-light);
+            padding: 1rem;
+            border-left: 3px solid var(--color-yellow);
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--color-text);
+            margin-top: 1rem;
+        }
+
+        /* Activities Section */
+        #activities {
+            background: var(--color-bg-light);
+        }
+
+        .activities-filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: white;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: var(--color-text);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--color-teal);
+            color: white;
+            border-color: var(--color-teal);
+            transform: translateY(-2px);
+        }
+
+        .search-bar {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid var(--color-border);
+            border-radius: 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--color-teal);
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--color-yellow);
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--color-bg-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .activity-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .activity-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .meta-tag {
+            padding: 0.3rem 0.8rem;
+            background: var(--color-bg-light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-light);
+        }
+
+        .meta-tag.category {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--color-teal);
+        }
+
+        .activity-card p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .activity-difficulty {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--color-yellow);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+            animation: fadeIn 0.3s;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--color-bg-light);
+            border-bottom: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-close:hover {
+            background: var(--color-coral);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body h2 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-section h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-teal);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-section h3::before {
+            content: '⚡';
+            font-size: 1.5rem;
+        }
+
+        .modal-section p,
+        .modal-section li {
+            color: var(--color-text-light);
+            line-height: 1.8;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-section ul,
+        .modal-section ol {
+            padding-left: 1.5rem;
+        }
+
+        .modal-section ol li {
+            margin-bottom: 1rem;
+        }
+
+        .safety-warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .safety-warning strong {
+            color: #856404;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        /* Support Section */
+        #support {
+            background: var(--color-bg-light);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .support-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+        }
+
+        .support-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .support-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--color-bg-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .support-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .support-card p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-content p {
+            font-size: 1.2rem;
+            color: var(--color-text-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 3rem;
+            background: var(--color-teal);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);
+        }
+
+        .contact-email:hover {
+            background: var(--color-teal-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .faq {
+            margin-top: 4rem;
+            text-align: left;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .faq-item h4 {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .faq-item p {
+            color: var(--color-text-light);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-text);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-yellow);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-container,
+            .mission-content {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-slide {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .carousel-container {
+                gap: 1rem;
+            }
+
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                margin: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo-container">
+                <svg class="logo-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Lightbulb -->
+                    <circle cx="50" cy="35" r="20" fill="#FDB913"/>
+                    <path d="M 35 50 Q 35 65 50 70 Q 65 65 65 50" fill="#FDB913"/>
+                    <rect x="45" y="70" width="10" height="8" fill="#E5A609" rx="2"/>
+                    <rect x="42" y="78" width="16" height="4" fill="#E5A609" rx="2"/>
+                    <!-- Light rays -->
+                    <line x1="50" y1="10" x2="50" y2="5" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="70" y1="15" x2="75" y2="10" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="75" y1="35" x2="80" y2="35" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="30" y1="15" x2="25" y2="10" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="25" y1="35" x2="20" y2="35" stroke="#FDB913" stroke-width="3" stroke-linecap="round"/>
+                </svg>
+                <div class="logo-text">SPARK</div>
+            </div>
+            <button class="menu-toggle">☰</button>
+            <ul class="nav-links">
+                <li><a href="#mission">Mission</a></li>
+                <li><a href="#team">Our Team</a></li>
+                <li><a href="#impact">Our Impact</a></li>
+                <li><a href="#activities">Activities</a></li>
+                <li><a href="#support">Support Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Inspiring Young Scientists<br><span class="highlight">One SPARK at a Time</span></h1>
+                <p class="hero-subtitle">High school volunteers bringing hands-on STEM activities to elementary schools, igniting curiosity and fostering a lifelong love of learning.</p>
+                <div class="hero-cta">
+                    <a href="#impact" class="btn btn-primary">See Our Impact</a>
+                    <a href="#activities" class="btn btn-secondary">Browse Activities</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <svg class="hero-lightbulb" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Large lightbulb illustration -->
+                    <defs>
+                        <linearGradient id="bulbGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FDB913;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#E5A609;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <!-- Bulb -->
+                    <circle cx="100" cy="80" r="50" fill="url(#bulbGradient)" opacity="0.9"/>
+                    <path d="M 60 120 Q 60 150 100 160 Q 140 150 140 120" fill="url(#bulbGradient)"/>
+                    <!-- Base -->
+                    <rect x="85" y="160" width="30" height="20" fill="#E5A609" rx="4"/>
+                    <rect x="80" y="180" width="40" height="10" fill="#E5A609" rx="4"/>
+                    <!-- Shine effect -->
+                    <ellipse cx="85" cy="70" rx="15" ry="20" fill="white" opacity="0.4"/>
+                    <!-- Rays -->
+                    <line x1="100" y1="20" x2="100" y2="5" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="145" y1="35" x2="160" y2="20" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="160" y1="80" x2="175" y2="80" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="145" y1="125" x2="160" y2="140" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="55" y1="35" x2="40" y2="20" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="40" y1="80" x2="25" y2="80" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                    <line x1="55" y1="125" x2="40" y2="140" stroke="#FDB913" stroke-width="6" stroke-linecap="round" opacity="0.8"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Students Inspired</p>
+            </div>
+            <div class="stat-item">
+                <h3>15+</h3>
+                <p>Schools Visited</p>
+            </div>
+            <div class="stat-item">
+                <h3>25+</h3>
+                <p>Activities Created</p>
+            </div>
+            <div class="stat-item">
+                <h3>50+</h3>
+                <p>Volunteer Hours</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section id="mission">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Mission</h2>
+                <p class="section-subtitle">Bringing the excitement of science directly to elementary classrooms</p>
+            </div>
+            <div class="mission-content">
+                <div class="mission-text">
+                    <h3>Educating & Inspiring the Next Generation</h3>
+                    <p>Science SPARK Club is a student-led initiative from Hillsdale High School dedicated to fostering scientific curiosity in elementary students through interactive, hands-on STEM activities.</p>
+                    <p>Our passionate high school volunteers visit local elementary schools, bringing engaging experiments and demonstrations that make science accessible, fun, and memorable for young learners.</p>
+                    <ul class="mission-points">
+                        <li>Interactive hands-on experiments designed for elementary students</li>
+                        <li>Led by trained and enthusiastic high school volunteers</li>
+                        <li>Activities covering physics, chemistry, biology, and engineering</li>
+                        <li>Free resources for parents to recreate activities at home</li>
+                    </ul>
+                </div>
+                <div class="mission-image">
+                    <div class="placeholder-img">
+                        Replace with photo of volunteers with students
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section id="team">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Meet Our Team</h2>
+                <p class="section-subtitle">The passionate high school volunteers making SPARK happen</p>
+            </div>
+
+            <!-- Group Photos Section -->
+            <div class="group-photos-section">
+                <h3 class="tier-title">Our SPARK Family</h3>
+                <div class="group-photo-placeholder">
+                    <div class="placeholder-img" style="height: 400px; width: 100%;">
+                        Group Photo 1<br>
+                        Replace with team group photo
+                    </div>
+                </div>
+                <div class="group-photo-placeholder">
+                    <div class="placeholder-img" style="height: 400px; width: 100%;">
+                        Group Photo 2<br>
+                        Replace with team group photo
+                    </div>
+                </div>
+                <div class="group-photo-placeholder">
+                    <div class="placeholder-img" style="height: 400px; width: 100%;">
+                        Group Photo 3<br>
+                        Replace with team group photo
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team Carousel -->
+            <div class="team-carousel-section">
+                <h3 class="tier-title">Meet Our Volunteers</h3>
+
+                <div class="carousel-container">
+                    <button class="carousel-btn prev" onclick="moveCarousel(-1)">&lt;</button>
+
+                    <div class="carousel-slide">
+                        <div class="carousel-image">
+                            <div class="placeholder-img" style="height: 450px;">
+                                Replace with photo
+                            </div>
+                        </div>
+                        <div class="carousel-description">
+                            <span class="member-badge">Club President</span>
+                            <h3>[Name]</h3>
+                            <p class="member-role">Senior, Hillsdale High School</p>
+                            <p class="member-bio">[Add description about this team member - their passion for science education, why they joined SPARK, their favorite activities, and what they hope to achieve.]</p>
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next" onclick="moveCarousel(1)">&gt;</button>
+                </div>
+
+                <div class="carousel-dots" id="carouselDots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                </div>
+
+                <p class="carousel-note">Use the arrows to browse through our team members</p>
+            </div>
+
+            <!-- Call to Action for Volunteers -->
+            <div class="join-team-cta">
+                <h3>Want to Join Our Team?</h3>
+                <p>We're always looking for passionate Hillsdale High School students to join SPARK!</p>
+                <a href="#contact" class="btn btn-primary">Become a Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Past Events Section -->
+    <section id="impact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Our Impact</h2>
+                <p class="section-subtitle">See how we've brought science to life in local elementary schools</p>
+            </div>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-image">Replace with event photo</div>
+                    <div class="event-content">
+                        <span class="event-date">October 15, 2024</span>
+                        <h3>Lincoln Elementary School</h3>
+                        <div class="event-stats">
+                            <span>👥 85 Students</span>
+                            <span>⚗️ 4 Activities</span>
+                        </div>
+                        <p class="event-description">Brought static electricity experiments and the science of sound to three 3rd grade classrooms. Students were amazed by making their hair stand up and creating music with water glasses!</p>
+                        <div class="event-testimonial">
+                            "My students couldn't stop talking about the experiments! This was exactly what they needed to get excited about science." - Ms. Johnson, 3rd Grade Teacher
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">Replace with event photo</div>
+                    <div class="event-content">
+                        <span class="event-date">September 22, 2024</span>
+                        <h3>Washington Elementary School</h3>
+                        <div class="event-stats">
+                            <span>👥 120 Students</span>
+                            <span>⚗️ 5 Activities</span>
+                        </div>
+                        <p class="event-description">Science fair featuring owl pellet dissection, density towers, and chemical reactions. Students rotated through stations learning about biology, physics, and chemistry.</p>
+                        <div class="event-testimonial">
+                            "The hands-on approach made complex concepts accessible. The volunteers were patient and enthusiastic!" - Mr. Rodriguez, 5th Grade Teacher
+                        </div>
+                    </div>
+                </div>
+
+                <div class="event-card">
+                    <div class="event-image">Replace with event photo</div>
+                    <div class="event-content">
+                        <span class="event-date">May 8, 2024</span>
+                        <h3>Roosevelt Elementary School</h3>
+                        <div class="event-stats">
+                            <span>👥 95 Students</span>
+                            <span>⚗️ 3 Activities</span>
+                        </div>
+                        <p class="event-description">Spring science showcase with volcano eruptions, balloon rockets, and color-changing reactions. Parents joined to see their kids become scientists for the day.</p>
+                        <div class="event-testimonial">
+                            "My daughter came home and immediately wanted to be a scientist. Thank you for inspiring her!" - Parent
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Activities Library</h2>
+                <p class="section-subtitle">Explore our collection of hands-on STEM activities you can try at home</p>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="Search activities...">
+            </div>
+
+            <div class="activities-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="physics">Physics</button>
+                <button class="filter-btn" data-filter="chemistry">Chemistry</button>
+                <button class="filter-btn" data-filter="biology">Biology</button>
+                <button class="filter-btn" data-filter="engineering">Engineering</button>
+            </div>
+
+            <div class="activities-grid" id="activitiesGrid">
+                <!-- Activities will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Support Our Mission</h2>
+                <p class="section-subtitle">Help us bring science education to more elementary students</p>
+            </div>
+            <div class="support-grid">
+                <div class="support-card">
+                    <div class="support-icon">💰</div>
+                    <h3>Donate</h3>
+                    <p>Your financial contributions help us purchase materials for experiments, transportation, and educational resources.</p>
+                    <p><em>Fundraising link coming soon!</em></p>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">📦</div>
+                    <h3>Material Donations</h3>
+                    <p>We're always in need of science supplies! Check our wish list for specific items that would help our activities.</p>
+                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">🤝</div>
+                    <h3>Partner With Us</h3>
+                    <p>Schools and organizations can partner with SPARK to bring science education to their community.</p>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+                </div>
+                <div class="support-card">
+                    <div class="support-icon">👥</div>
+                    <h3>Volunteer</h3>
+                    <p>High school students from Hillsdale can join our team of volunteers and help inspire the next generation.</p>
+                    <a href="#contact" class="btn btn-secondary">Join Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">Get in Touch</h2>
+                <p class="section-subtitle">We'd love to hear from you!</p>
+            </div>
+            <div class="contact-content">
+                <p>Interested in booking a visit to your school? Want to volunteer? Have questions about our activities?</p>
+                <a href="mailto:spark@hillsdale.edu" class="contact-email">
+                    <span>📧</span>
+                    <span>spark@hillsdale.edu</span>
+                </a>
+
+                <div class="faq">
+                    <div class="faq-item">
+                        <h4>How can my school book a SPARK visit?</h4>
+                        <p>Email us at spark@hillsdale.edu with your school name, preferred dates, number of students, and grade levels. We'll work with you to customize activities perfect for your students!</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Are the activities free?</h4>
+                        <p>Yes! All our school visits and activity resources are provided free of charge. We're supported by donations and volunteer time.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>How can high school students join SPARK?</h4>
+                        <p>Hillsdale High School students can reach out via email to learn about volunteer opportunities, training sessions, and our meeting schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">SPARK</div>
+            <p class="footer-text">Science Program Advancing Real Knowledge</p>
+            <p class="footer-text">Hillsdale High School | Inspiring Elementary Students Since 2024</p>
+            <p class="footer-text">&copy; 2024 Science SPARK Club. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Activity Modal -->
+    <div class="modal" id="activityModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Activities Database
+        const activities = [
+            // EXAMPLE 1: FULLY DETAILED ACTIVITY
+            {
+                id: 'static-electricity',
+                title: 'Static Electricity Magic',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '45 minutes',
+                icon: '⚡',
+                shortDescription: 'Make hair stand on end and move objects without touching them! Explore the invisible forces of static electricity.',
+                fullDescription: 'Students discover the fascinating world of static electricity through hands-on experiments. They\'ll learn about positive and negative charges, attraction and repulsion, and see electricity in action as they make their hair stand up, bend water, and move objects without touching them.',
+                whyItsCool: 'Static electricity is invisible but powerful! Students are amazed when they can make things move without touching them and understand that this same force causes lightning in storms.',
+                learningObjectives: [
+                    'Understand that objects can have positive or negative electrical charges',
+                    'Observe forces acting at a distance',
+                    'Learn that opposites attract and likes repel',
+                    'Connect static electricity to everyday phenomena like lightning and shocks'
+                ],
+                materials: [
+                    'Balloons (1 per student)',
+                    'Wool cloth or sweater',
+                    'Small pieces of paper (confetti works great)',
+                    'Plastic combs',
+                    'Tissue paper',
+                    'Water from a faucet (for water-bending demo)',
+                    'Optional: Van de Graaff generator for dramatic demo'
+                ],
+                steps: [
+                    'Begin by asking students if they\'ve ever felt a shock after walking on carpet or seen their hair stick to a balloon. Explain that\'s static electricity!',
+                    'Demonstrate: Rub a balloon vigorously on your hair or a wool sweater for 30 seconds. Slowly pull it away and watch hair follow the balloon.',
+                    'Have students try it themselves. Encourage them to rub the balloon for at least 30 seconds to build up charge.',
+                    'Next activity: Tear paper into tiny pieces. Have students rub their balloon again, then bring it close to the paper pieces without touching. Watch the paper jump to the balloon!',
+                    'Advanced demo: Rub a comb on wool, then slowly bring it near a thin stream of water from a faucet. Watch the water bend toward the comb!',
+                    'Explain that rubbing transfers electrons, creating positive and negative charges. Opposite charges attract.',
+                    'Discussion: Where do we see static electricity? (Lightning, clothes in dryer, hair on dry winter days)'
+                ],
+                safetyTips: [
+                    'Check for latex allergies before distributing balloons',
+                    'Keep balloons away from faces to prevent popping near eyes',
+                    'If using a Van de Graaff generator, ensure students with pacemakers or heart conditions do not participate',
+                    'Keep experiments away from electronics and computers'
+                ],
+                engagementTips: [
+                    'Start with a demonstration before distributing materials - build excitement!',
+                    'Ask prediction questions: "What do you think will happen if...?"',
+                    'Relate to their experiences: "Have you ever been shocked by a doorknob?"',
+                    'Make it competitive: "Who can make their hair stand up the highest?"',
+                    'Use dramatic language: "invisible forces," "magic," "superpowers"',
+                    'Let them teach each other - peer learning is powerful'
+                ],
+                questionsToAsk: [
+                    'Why do you think your hair follows the balloon?',
+                    'What happens if you try this with different materials?',
+                    'Why does this work better on dry days than humid days?',
+                    'How is this like lightning in a storm?'
+                ]
+            },
+
+            // EXAMPLE 2: FULLY DETAILED ACTIVITY
+            {
+                id: 'owl-pellet',
+                title: 'Owl Pellet Dissection',
+                category: 'biology',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '60 minutes',
+                icon: '🦉',
+                shortDescription: 'Become a scientist detective! Dissect real owl pellets to discover what owls eat and reconstruct tiny skeletons.',
+                fullDescription: 'Students get to be real scientists as they carefully dissect sterilized owl pellets to uncover bones, fur, and clues about what owls eat. Using bone identification charts, they reconstruct complete skeletons of small prey animals, learning about food chains, predator-prey relationships, and comparative anatomy.',
+                whyItsCool: 'This is REAL science! Students are working with actual specimens that came from wild owls. They become detectives, piecing together clues about what the owl ate. Finding a complete skull is like discovering treasure!',
+                learningObjectives: [
+                    'Understand food chains and predator-prey relationships',
+                    'Learn about owl digestion and adaptations',
+                    'Practice scientific observation and recording',
+                    'Identify bones and understand skeletal structure',
+                    'Develop fine motor skills through careful dissection'
+                ],
+                materials: [
+                    'Sterilized owl pellets (1 per 2 students) - order from biological supply company',
+                    'Dissection tools: wooden skewers, toothpicks, or plastic probes',
+                    'Bone identification charts (print for each group)',
+                    'Magnifying glasses',
+                    'White paper or dissection trays',
+                    'Gloves (optional but recommended)',
+                    'Small plastic bags for bone storage',
+                    'Glue and cardstock for skeleton mounting (optional)',
+                    'Hand sanitizer and paper towels'
+                ],
+                steps: [
+                    'Introduction (10 min): Show owl pictures/videos. Explain that owls swallow prey whole and regurgitate pellets of indigestible parts. Ask: "What do you think we\'ll find inside?"',
+                    'Safety briefing (5 min): Demonstrate proper handling. Pellets are sterilized but students should wash hands after. Show how to gently tease apart the pellet.',
+                    'Dissection begins (25 min): Have students gently pull apart the pellet using probes. Encourage them to separate bones from fur carefully. "Go slowly - you\'re scientists, not in a race!"',
+                    'Bone identification (15 min): Using identification charts, have students sort bones by type (skulls, jaws, ribs, leg bones). Challenge them to identify which animals the owl ate.',
+                    'Skeleton reconstruction (optional, 20 min): Advanced students can try to reconstruct complete skeletons on paper and glue them down.',
+                    'Wrap-up discussion (5 min): What did you discover? How many animals? What adaptations do owls have? Why are owls important to ecosystems?'
+                ],
+                safetyTips: [
+                    'Pellets are heat-sterilized but still use gloves if students prefer',
+                    'Ensure all students wash hands thoroughly after activity',
+                    'Keep pellets away from faces and mouths',
+                    'Warn students about small, sharp bones',
+                    'Have a "no eating or drinking" rule during dissection',
+                    'Supervise closely to ensure respectful treatment of specimens'
+                ],
+                engagementTips: [
+                    'Build suspense: "You\'re about to open something that came from a REAL owl in the wild!"',
+                    'Make it a competition: "Which group can find the most complete skull?"',
+                    'Use detective language: "What clues can you find?" "What\'s your evidence?"',
+                    'Share interesting facts: "Owl ears are asymmetrical to help them hunt!"',
+                    'Take photos of students\' discoveries to share later',
+                    'Let students name their "prey" once identified'
+                ],
+                questionsToAsk: [
+                    'What animal do you think this skull came from? How can you tell?',
+                    'Why do owls cough up pellets instead of digesting everything?',
+                    'How does this help us understand what owls eat?',
+                    'What would happen to the ecosystem if owls disappeared?'
+                ]
+            },
+
+            // EXAMPLE 3: FULLY DETAILED ACTIVITY
+            {
+                id: 'density-tower',
+                title: 'Density Tower Rainbow',
+                category: 'chemistry',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '40 minutes',
+                icon: '🌈',
+                shortDescription: 'Create a stunning rainbow tower where liquids float on top of each other! Discover why some things sink and others float.',
+                fullDescription: 'Students create beautiful layered liquid towers using common household items. By carefully layering liquids of different densities, they create colorful towers and learn why objects float or sink. This visually stunning experiment makes abstract concepts concrete.',
+                whyItsCool: 'It looks like magic! Students can\'t believe that liquids can stack on top of each other without mixing. Plus, you get to make a rainbow in a glass. Everyone wants to take their tower home!',
+                learningObjectives: [
+                    'Understand the concept of density',
+                    'Learn why objects float or sink',
+                    'Practice careful measurement and pouring',
+                    'Observe how substances with different densities interact',
+                    'Apply density knowledge to everyday phenomena'
+                ],
+                materials: [
+                    'Clear plastic cups or glasses (one per student)',
+                    'Honey (most dense)',
+                    'Corn syrup',
+                    'Dish soap',
+                    'Water',
+                    'Vegetable oil',
+                    'Rubbing alcohol (least dense)',
+                    'Food coloring (to color water and alcohol)',
+                    'Small droppers or pipettes',
+                    'Optional: small objects to test (grape, plastic bead, cork, metal washer)'
+                ],
+                steps: [
+                    'Introduction (5 min): Ask: "Can water float on oil?" Show examples of salad dressing separating. Explain that different liquids have different densities.',
+                    'Preparation (5 min): If needed, color the water with blue food coloring and the rubbing alcohol with red. This makes the layers more visible.',
+                    'Building the tower (20 min): Work from densest to least dense. Pour honey first into the bottom of the cup. Then SLOWLY pour corn syrup down the side of the cup - it should float on the honey!',
+                    'Continue with dish soap, colored water, vegetable oil, and finally colored rubbing alcohol. Key: Pour slowly down the side of the cup.',
+                    'Testing phase (10 min): Have students predict: Will a grape sink or float? Where will it stop? Test various objects and observe where they settle in the density tower.',
+                    'Discussion: Why did the liquids layer? Why did different objects stop at different levels?'
+                ],
+                safetyTips: [
+                    'Rubbing alcohol should be handled by adults only',
+                    'No tasting any of the liquids',
+                    'Clean up spills immediately - liquids can be slippery',
+                    'Use plastic cups to avoid broken glass',
+                    'Wash hands after activity'
+                ],
+                engagementTips: [
+                    'Let students pour their own layers (with supervision)',
+                    'Make predictions before each layer: "Will this float or sink?"',
+                    'Compare students\' towers - did everyone\'s work?',
+                    'Challenge: Can you add layers in a different order and get the same result?',
+                    'Relate to real life: "Why does oil float on water in the ocean after a spill?"',
+                    'Give students take-home cups if possible - they love showing family!'
+                ],
+                questionsToAsk: [
+                    'Why do you think the honey sank to the bottom?',
+                    'What happens if you stir the tower?',
+                    'Where will this object stop? (before testing)',
+                    'Can you think of other examples of density in everyday life?'
+                ]
+            },
+
+            // EXAMPLE 4: FULLY DETAILED ACTIVITY
+            {
+                id: 'sound-science',
+                title: 'Science of Sound',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '50 minutes',
+                icon: '🎵',
+                shortDescription: 'Make music with water glasses and see sound waves! Learn how sound travels and what makes high and low notes.',
+                fullDescription: 'Through a series of musical experiments, students discover how sound is created by vibrations, how it travels through different materials, and what creates pitch. They create their own instruments and see sound waves in action.',
+                whyItsCool: 'Students can SEE sound! Using tuning forks and water, they watch sound waves create patterns. Plus, everyone gets to make music and take home a simple instrument. It connects science to something they love - music!',
+                learningObjectives: [
+                    'Understand that sound is created by vibrations',
+                    'Learn how sound travels through different materials',
+                    'Discover what creates high and low pitch',
+                    'Observe the relationship between vibration speed and pitch',
+                    'Apply concepts to real musical instruments'
+                ],
+                materials: [
+                    'Identical glass cups or bottles (6-8 per group)',
+                    'Water',
+                    'Wooden chopsticks or spoons for tapping',
+                    'Tuning forks',
+                    'Small containers of water (for tuning fork demo)',
+                    'Rubber bands of different thicknesses',
+                    'Plastic straws',
+                    'Tissue boxes (optional, for rubber band guitars)',
+                    'Food coloring (optional, makes water levels more visible)',
+                    'Note cards with simple songs (like "Mary Had a Little Lamb")'
+                ],
+                steps: [
+                    'Introduction (5 min): Pluck a rubber band and ask: "What do you see?" (vibrations) "What do you hear?" (sound). Explain: Sound is vibration!',
+                    'Tuning fork demo (5 min): Strike a tuning fork and hold it near students\' ears. Then strike it again and dip it in water - watch the splash! Sound waves make water spray.',
+                    'Water glass xylophone (20 min): Set up glasses with different water levels. Demonstrate: more water = lower pitch. Have students create a scale by carefully adding/removing water.',
+                    'Challenge students to play a simple song like "Mary Had a Little Lamb" on their glass xylophone.',
+                    'Rubber band guitar (15 min): Stretch rubber bands around tissue boxes or just between fingers. Test different thicknesses: Which makes higher sounds? (Thinner = higher pitch)',
+                    'Straw oboes (optional, 10 min): Flatten one end of a straw and cut it to a point. Blow through the pointed end - it vibrates and makes sound! Cut the straw shorter - what happens to the pitch?'
+                ],
+                safetyTips: [
+                    'Use plastic cups if available to avoid broken glass',
+                    'Supervise the tuning fork water demo closely to avoid splashing',
+                    'Monitor volume - lots of tapping can get loud!',
+                    'For straw oboes: warn students not to blow too hard or share straws'
+                ],
+                engagementTips: [
+                    'Start with a performance: Play a real instrument or show video of orchestra',
+                    'Let students experiment freely before structured activities',
+                    'Record students playing their water xylophones',
+                    'Create a "class band" where groups play together',
+                    'Connect to instruments they know: "How does a guitar work?" "A flute?"',
+                    'Challenge: Can you create a specific note?'
+                ],
+                questionsToAsk: [
+                    'What makes the sound in each instrument?',
+                    'How can we make the pitch higher? Lower?',
+                    'Why do different glasses make different sounds?',
+                    'How is your voice like an instrument?'
+                ]
+            },
+
+            // NEW ACTIVITIES FROM ACTIVITIES.MD
+            {
+                id: 'activity-5',
+                title: 'Invisible Ink',
+                category: 'chemistry',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 minutes',
+                icon: '✉️',
+                shortDescription: 'Create secret messages using invisible ink and reveal them with turmeric magic!',
+                fullDescription: 'Students write secret messages using a baking soda solution that becomes invisible when dry. When brushed with a turmeric mixture, the hidden message dramatically appears through a pH-based reaction. This activity demonstrates acid-base chemistry in a fun, spy-themed context.',
+                whyItsCool: 'Kids love the mystery and excitement of secret messages! The dramatic color change when the message appears feels like magic. The spy theme captures imagination and the hands-on nature keeps everyone engaged.',
+                learningObjectives: [
+                    'Understand pH-based chemical reactions',
+                    'Learn about natural pH indicators like turmeric',
+                    'Discover real-world applications of chemistry',
+                    'Practice careful observation and patience'
+                ],
+                materials: [
+                    'Water color postcards (cut into quarters)',
+                    'Turmeric powder (1 tbsp per quarter cup rubbing alcohol)',
+                    'Rubbing alcohol',
+                    'Baking soda (1 tbsp per quarter cup water)',
+                    'Water',
+                    'Thin paintbrushes for writing',
+                    'Big paintbrushes for revealing',
+                    'Trays or plates',
+                    'Gloves (optional, to avoid staining hands)'
+                ],
+                steps: [
+                    'Setup (5 min): Cut postcards into quarters. Mix 1 tbsp turmeric with 1/4 cup rubbing alcohol. Mix 1 tbsp baking soda with 1/4 cup water. Set up on trays.',
+                    'Hook (2 min): Ask kids if they like spies or ninjas, then ask if they want to send a secret message!',
+                    'Writing (8 min): Using thin brush, dip into baking soda solution, draining excess on cup side. Write or draw on paper (name, star, heart, smiley face, etc.).',
+                    'Drying (20 sec): Have kids pick up paper and fan it to dry. Doesn\'t need to be completely dry.',
+                    'Revealing (10 min): Using big brush, dip into turmeric mixture, drain excess. Do a quick pass covering whole paper. Message appears after 5 seconds, clearer after 20 seconds!',
+                    'Explanation: Discuss pH reaction and real-world uses like medical sutures that change color to detect infections.'
+                ],
+                safetyTips: [
+                    'Do on trays - turmeric stains!',
+                    'Bring gloves or avoid getting turmeric on hands',
+                    'Use rubbing alcohol with adult supervision',
+                    'Don\'t let kids use small brushes for turmeric - takes too long and risks hand staining',
+                    'Protect clothing and work surfaces'
+                ],
+                engagementTips: [
+                    'Frame it as spy mission or secret code activity',
+                    'Show how hospitals use pH-changing sutures',
+                    'Let kids write messages to each other',
+                    'Compare who can write the most elaborate hidden picture',
+                    'Explain: baking soda "hides" and turmeric "seeks"',
+                    'Demonstrate first to build anticipation'
+                ],
+                questionsToAsk: [
+                    'What do you think is happening when the message appears?',
+                    'Why does the turmeric change color when it finds the baking soda?',
+                    'Can you think of other places we use color-changing chemistry?',
+                    'How might this be useful in real life?'
+                ]
+            },
+            {
+                id: 'activity-6',
+                title: 'Owl Pellet Dissection',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '35 minutes',
+                icon: '🦉',
+                shortDescription: 'Discover what owls eat by carefully dissecting owl pellets and finding bones!',
+                fullDescription: 'Students become wildlife detectives by dissecting owl pellets to discover bones and fur from the owl\'s prey. This hands-on biology activity teaches about food chains, predator-prey relationships, and animal anatomy while engaging students in real scientific investigation.',
+                whyItsCool: 'Kids love the detective work of finding hidden bones! It\'s like a treasure hunt with real scientific value. Finding a complete skull is especially exciting. Students get to see actual evidence of what animals eat and connect to real wildlife biology.',
+                learningObjectives: [
+                    'Understand owl digestion and regurgitation',
+                    'Learn about food chains and predator-prey relationships',
+                    'Practice bone identification skills',
+                    'Develop careful observation and handling techniques'
+                ],
+                materials: [
+                    'Sterilized owl pellets (1 per 2-3 students)',
+                    'Dissection trays or plates',
+                    'Tweezers',
+                    'Toothpicks',
+                    'Small storage containers',
+                    'Cotton balls',
+                    'Tape for sealing',
+                    'Markers for labeling',
+                    'Optional: bone identification charts',
+                    'Optional: magnifying glasses'
+                ],
+                steps: [
+                    'Setup (5 min): Place one pellet in each tray with tweezers and toothpicks. Prep storage containers with cotton balls inside.',
+                    'Introduction (5 min): Explain that owls swallow prey whole but can\'t digest bones/fur, so they regurgitate pellets.',
+                    'Dissection (20 min): Have kids carefully break down pellet and search for bones. When found, try to identify what animal and what part.',
+                    'Collection (5 min): Place bones in storage container. Tape shut and write name on container.',
+                    'Discussion: What animals did the owl eat? What bones did you find? Compare findings across groups.'
+                ],
+                safetyTips: [
+                    'Pellets are sterilized but still wash hands after',
+                    'Use tools, not bare hands when possible',
+                    'Don\'t put fingers in mouth during activity',
+                    'Supervise younger students with sharp tools',
+                    'Clean work area thoroughly after'
+                ],
+                engagementTips: [
+                    'Skulls are the best finds - celebrate when found!',
+                    'Usually only one skull per pellet, so manage expectations',
+                    'Encourage bone identification using charts',
+                    'Try to make them spend time identifying, not just collecting every bone',
+                    'If pellet has been searched multiple times, help them find hidden small bones',
+                    'Connect to food chains and ecosystems discussion'
+                ],
+                questionsToAsk: [
+                    'What animal do you think this bone came from?',
+                    'How many different animals did this owl eat?',
+                    'Why can\'t owls digest bones?',
+                    'What does this tell us about what owls eat?'
+                ]
+            },
+            {
+                id: 'activity-7',
+                title: 'Science of Sound - String Telephone',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 minutes',
+                icon: '📞',
+                shortDescription: 'Build string telephones and explore how sound travels through different materials!',
+                fullDescription: 'Students create working string telephones using cups and string, discovering how sound vibrations travel through different materials. This hands-on physics activity demonstrates sound transmission and the properties of vibration in a fun, communicative way.',
+                whyItsCool: 'Kids can actually talk to each other through homemade telephones! It\'s surprising that sound travels so clearly through string. The activity combines building, testing, and real communication, making physics immediately relevant and fun.',
+                learningObjectives: [
+                    'Understand that sound travels as vibrations',
+                    'Learn how different materials transmit sound',
+                    'Discover what happens when vibrations are interrupted',
+                    'Practice scientific observation and hypothesis testing'
+                ],
+                materials: [
+                    'Paper or plastic cups (2 per pair)',
+                    'String or yarn (6-10 feet per pair)',
+                    'Pencils or small nails for poking holes',
+                    'Paper clips',
+                    'Scissors',
+                    'Optional: different materials to test (thin wire, fishing line, ribbon)'
+                ],
+                steps: [
+                    'Prepare cups (5 min): Use pencil to poke small hole in bottom center of each cup.',
+                    'Thread string (5 min): Push one end of string through hole in each cup. Tie each end to a paperclip to keep string from slipping through.',
+                    'Test telephone (10 min): One student takes cup and walks away until string is tight. One person talks into cup while partner listens. Switch roles!',
+                    'Experiment (5 min): Have student press on string while you talk - they shouldn\'t hear anything! Test what happens when string is loose vs. tight.',
+                    'Discussion (5 min): Why does it work? What happens when you touch the string? How is this like real phones?'
+                ],
+                safetyTips: [
+                    'Supervise hole-poking with sharp objects',
+                    'Keep string away from necks',
+                    'Clear walking space to prevent tripping',
+                    'Use plastic cups for younger students'
+                ],
+                engagementTips: [
+                    'Let pairs send secret messages across the room',
+                    'Try different string materials - which works best?',
+                    'Challenge: how far apart can you get and still hear?',
+                    'Connect to how old phones worked',
+                    'Demonstrate that touching string absorbs vibration energy',
+                    'Create a multi-way telephone with 3+ cups'
+                ],
+                questionsToAsk: [
+                    'How does sound travel from your mouth to your friend\'s ear?',
+                    'What happens when the string is loose?',
+                    'Why does touching the string stop the sound?',
+                    'How is this similar to how your vocal cords work?'
+                ]
+            },
+            {
+                id: 'activity-8',
+                title: 'Foil Boat Float',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 minutes',
+                icon: '⛵',
+                shortDescription: 'Design aluminum foil boats and discover how many weights they can hold before sinking!',
+                fullDescription: 'Students shape aluminum foil into boats and test how much weight they can hold before sinking. This experiment teaches buoyancy, boat design, and the scientific method through hands-on testing and observation.',
+                whyItsCool: 'Kids love the challenge of beating each other\'s records! Watching the boat slowly fill with weights and finally sink is suspenseful. The immediate feedback helps them understand cause and effect in boat design.',
+                learningObjectives: [
+                    'Understand basic buoyancy principles',
+                    'Learn how boat shape affects floating capacity',
+                    'Discover that shape matters more than material weight',
+                    'Practice making predictions and testing hypotheses'
+                ],
+                materials: [
+                    'Aluminum foil (uniform sheets)',
+                    'Plastic container filled halfway with water',
+                    'Washer weights or pennies',
+                    'Towels for cleanup',
+                    'Optional: rulers for measuring boat dimensions',
+                    'Optional: recording sheets for data'
+                ],
+                steps: [
+                    'Setup (3 min): Fill plastic container halfway with water. Rip out uniform foil sheets for each student.',
+                    'Design (7 min): Give each child a foil sheet. Ask them to shape it into a boat or tray that can hold weight. Encourage experimentation with different shapes.',
+                    'Test (15 min): Place foil boat gently on water. Slowly add washer weights one at a time. Count how many the boat holds before sinking!',
+                    'Redesign (optional, 5 min): Based on results, let students redesign and test again. Can they beat their first attempt?',
+                    'Discussion: Why did some boats hold more? What shapes worked best? How does this relate to real boats?'
+                ],
+                safetyTips: [
+                    'Supervise around water',
+                    'Wipe up spills immediately',
+                    'Foil edges can be sharp - supervise younger students',
+                    'Keep weights away from mouths',
+                    'Ensure container is stable'
+                ],
+                engagementTips: [
+                    'Make it a competition - who can hold the most weights?',
+                    'Track records on a board',
+                    'Discuss real ship design principles',
+                    'Try different materials - what if we used paper?',
+                    'Connect to Archimedes principle in simple terms',
+                    'Show pictures of different boat shapes'
+                ],
+                questionsToAsk: [
+                    'What boat shape do you think will hold the most weight?',
+                    'Why do some boats float and hold more than others?',
+                    'What happens when water gets inside the boat?',
+                    'How do scientists make predictions and test them?'
+                ]
+            },
+            {
+                id: 'activity-9',
+                title: 'Bridge Building Challenge',
+                category: 'engineering',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '60 minutes',
+                icon: '🌉',
+                shortDescription: 'Design and build bridges with everyday materials - test which design is strongest!',
+                fullDescription: 'Students design, build, and test bridges using simple materials, learning about structural engineering, load distribution, and the engineering design process. Teams compete to build the strongest bridge.',
+                whyItsCool: 'It\'s a competition! Students love the challenge of building something that can hold weight. Seeing their creation support heavy books is thrilling. Plus, they get to test to destruction - watching bridges fail teaches valuable lessons!',
+                learningObjectives: [
+                    'Understand basic structural engineering concepts',
+                    'Learn about tension, compression, and load distribution',
+                    'Practice the engineering design process',
+                    'Develop teamwork and problem-solving skills'
+                ],
+                materials: [
+                    'Popsicle sticks, straws, or index cards',
+                    'Tape or glue',
+                    'Scissors',
+                    'Two desks or boxes to span',
+                    'Weights for testing (books, coins, etc.)',
+                    'Ruler or measuring tape',
+                    'Optional: string, paper clips'
+                ],
+                steps: [
+                    'Introduction (10 min): Show pictures of famous bridges. Discuss what makes them strong. Explain the challenge: build a bridge that spans 12 inches and holds the most weight.',
+                    'Design phase (15 min): Teams sketch their bridge design. Encourage them to think about triangles (strongest shape) and how weight distributes.',
+                    'Building (25 min): Teams construct their bridges. Remind them to test as they build!',
+                    'Testing (10 min): Place each bridge between two desks. Add weight gradually (books, one at a time) until it fails. Record maximum weight held!',
+                    'Discussion: What designs worked best? Why did some fail? What would you change?'
+                ],
+                safetyTips: [
+                    'Supervise use of scissors and glue',
+                    'Stand back when testing - bridges can collapse suddenly',
+                    'No climbing on desks or furniture',
+                    'Clean up broken materials immediately'
+                ],
+                engagementTips: [
+                    'Show videos of bridge failures and successes',
+                    'Make it a competition with prizes',
+                    'Encourage testing and iteration',
+                    'Take photos of each bridge before testing',
+                    'Explain that real engineers test their designs too!',
+                    'Use dramatic language: "Load test!" "Critical failure!"'
+                ],
+                questionsToAsk: [
+                    'Why are triangles strong shapes for bridges?',
+                    'What happened to your bridge when weight was added?',
+                    'If you could rebuild, what would you change?',
+                    'How do real bridges support cars and trucks?'
+                ]
+            },
+            {
+                id: 'activity-10',
+                title: 'Egg Drop Challenge',
+                category: 'engineering',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '50 minutes',
+                icon: '🥚',
+                shortDescription: 'Protect an egg from cracking using creative engineering solutions!',
+                fullDescription: 'Students design and build protective containers to prevent an egg from breaking when dropped from height. This classic engineering challenge teaches about impact force, energy absorption, and creative problem-solving.',
+                whyItsCool: 'Will it crack or survive? The suspense is incredible! Students get invested in their designs and cheer (or groan) when eggs are dropped. Even failures are learning opportunities and spectacular!',
+                learningObjectives: [
+                    'Understand impact forces and energy absorption',
+                    'Learn about crumple zones and cushioning',
+                    'Practice creative problem-solving under constraints',
+                    'Experience engineering iteration and testing'
+                ],
+                materials: [
+                    'Raw eggs (1 per team + extras)',
+                    'Building materials: straws, popsicle sticks, cotton balls, bubble wrap, rubber bands, tape, cardboard, newspaper, plastic bags',
+                    'Scissors',
+                    'Measuring tape',
+                    'Drop zone (outdoor area or tarp)',
+                    'Ladder or elevated drop point'
+                ],
+                steps: [
+                    'Challenge intro (5 min): Explain the goal - protect an egg from a drop (start at 6 feet, go higher if successful). Show them available materials.',
+                    'Design phase (10 min): Teams sketch designs and select materials. Encourage diverse approaches: cushioning, suspension, shells, parachutes.',
+                    'Building (25 min): Construct egg protection devices. Remind teams they can test gently!',
+                    'Drop test! (10 min): Drop eggs one by one from designated height. Check for cracks. Survivors go to next round from higher up!',
+                    'Analysis: What designs worked? Why? What would improve unsuccessful designs?'
+                ],
+                safetyTips: [
+                    'Adult handles all drops from height',
+                    'Clear the drop zone - stand back!',
+                    'Clean up broken eggs immediately',
+                    'Wash hands after activity',
+                    'Use ladder safely with spotter'
+                ],
+                engagementTips: [
+                    'Count down before each drop: "3-2-1-DROP!"',
+                    'Let students name their egg protectors',
+                    'Video the drops in slow motion if possible',
+                    'Award categories: lightest, most creative, most effective',
+                    'Explain how cars use crumple zones the same way!',
+                    'Winners can challenge higher drops'
+                ],
+                questionsToAsk: [
+                    'How did your design protect the egg?',
+                    'What absorbed the impact?',
+                    'Why did some eggs break and others survive?',
+                    'How could you improve your design?'
+                ]
+            },
+            {
+                id: 'activity-11',
+                title: 'Plant Growth Experiments',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 min + ongoing',
+                icon: '🌱',
+                shortDescription: 'Explore what plants need to grow through hands-on experiments!',
+                fullDescription: 'Students design experiments to test what plants need to grow, learning about the scientific method, controlled experiments, and plant biology. Over days or weeks, they observe and record changes.',
+                whyItsCool: 'Watching seeds sprout and grow is magical! Students become plant scientists, caring for their experiments daily. They see cause and effect in action and learn patience in science.',
+                learningObjectives: [
+                    'Understand plant needs: light, water, air, nutrients',
+                    'Practice the scientific method and controlled experiments',
+                    'Learn about variables and fair testing',
+                    'Develop observation and recording skills'
+                ],
+                materials: [
+                    'Fast-growing seeds (bean, radish, or grass)',
+                    'Small pots or cups with drainage holes',
+                    'Potting soil',
+                    'Water',
+                    'Labels and markers',
+                    'Rulers',
+                    'Science journals for recording',
+                    'Optional: lamp for light experiment'
+                ],
+                steps: [
+                    'Question (5 min): What do plants need to grow? Make a list. Choose one variable to test (water, light, or soil).',
+                    'Hypothesis (5 min): Make predictions. "I think plants need water because..."',
+                    'Setup (15 min): Plant seeds in multiple pots. Create control (normal conditions) and test groups (no water, no light, etc.). Label everything!',
+                    'Observation (5 min daily for 2-3 weeks): Measure and record daily. Take photos. Note changes.',
+                    'Conclusion: After 2-3 weeks, compare results. Was your hypothesis correct? What did you learn?'
+                ],
+                safetyTips: [
+                    'Wash hands after handling soil',
+                    'Don\'t eat seeds or plants',
+                    'Wipe up water spills immediately',
+                    'Supervise younger students with soil'
+                ],
+                engagementTips: [
+                    'Let students design their own experiments',
+                    'Create data charts with pictures for younger students',
+                    'Make predictions and check daily',
+                    'Compare different students\' results',
+                    'Try silly experiments: music, talking to plants, soda instead of water',
+                    'Transfer successful plants to school garden'
+                ],
+                questionsToAsk: [
+                    'What do you predict will happen?',
+                    'What changes do you see today?',
+                    'Which plant is growing best? Why?',
+                    'What would happen if we changed something else?'
+                ]
+            },
+            {
+                id: 'activity-12',
+                title: 'Magnet Exploration',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-4',
+                duration: '40 minutes',
+                icon: '🧲',
+                shortDescription: 'Discover magnetic forces and create floating magnets!',
+                fullDescription: 'Students explore magnetic attraction and repulsion through hands-on experiments. They test which materials are magnetic, create magnetic chains, and even make magnets float!',
+                whyItsCool: 'Magnets feel like magic! Students are fascinated by invisible forces that can act through air, water, and solids. Making magnets repel and float seems impossible but it\'s real science!',
+                learningObjectives: [
+                    'Understand magnetic attraction and repulsion',
+                    'Learn about magnetic poles (north and south)',
+                    'Discover which materials are magnetic',
+                    'Observe forces acting at a distance'
+                ],
+                materials: [
+                    'Strong bar or ring magnets (several per group)',
+                    'Assorted objects to test (paper clips, coins, aluminum foil, plastic, wood, fabric, etc.)',
+                    'Iron filings or iron powder',
+                    'Paper and plastic sheet',
+                    'Pencils or dowels (for floating magnet demo)',
+                    'Small magnetic items (paper clips, washers)'
+                ],
+                steps: [
+                    'Exploration (10 min): Give students magnets and various objects. Which stick to magnets? Create a chart: magnetic vs. non-magnetic.',
+                    'Poles demo (10 min): Show that magnets have two poles. Opposites attract, likes repel! Try to push same poles together - they resist!',
+                    'Iron filings art (10 min): Place magnet under paper, sprinkle iron filings on top. See the magnetic field! Move magnet and watch patterns change.',
+                    'Floating magnets (5 min): Stack ring magnets on a pencil with same poles facing - they float!',
+                    'Magnetic fishing (5 min): Attach paper clips to paper fish. Use magnet on string to "fish" without touching!'
+                ],
+                safetyTips: [
+                    'Keep magnets away from electronics and credit cards',
+                    'Strong magnets can pinch - supervise carefully',
+                    'Don\'t swallow small magnetic items',
+                    'Keep iron filings away from eyes'
+                ],
+                engagementTips: [
+                    'Start with a mystery: move paper clip without touching it!',
+                    'Make magnetic mazes or puzzles',
+                    'Create magnetic art with iron filings',
+                    'Race magnetic cars or boats',
+                    'Explain that Earth is a giant magnet!',
+                    'Try making temporary magnets from paper clips'
+                ],
+                questionsToAsk: [
+                    'Which materials are attracted to magnets?',
+                    'What happens when you push the same poles together?',
+                    'Can magnetic force work through paper? Water? Your hand?',
+                    'Where do we use magnets in everyday life?'
+                ]
+            },
+            {
+                id: 'activity-13',
+                title: 'Water Cycle in a Bag',
+                category: 'biology',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 min + observation',
+                icon: '💧',
+                shortDescription: 'Watch the water cycle happen right before your eyes in a sealed bag!',
+                fullDescription: 'Students create a mini water cycle ecosystem in a sealed plastic bag, observing evaporation, condensation, and precipitation in real-time. This visual demonstration helps students understand Earth\'s water cycle.',
+                whyItsCool: 'You can see the water cycle happening! Students watch water droplets form and "rain" inside the bag. It\'s like having a tiny weather system on the wall. The best part? It keeps cycling for weeks!',
+                learningObjectives: [
+                    'Understand the water cycle: evaporation, condensation, precipitation',
+                    'Observe water changing states',
+                    'Learn about closed systems',
+                    'Connect classroom model to Earth\'s real water cycle'
+                ],
+                materials: [
+                    'Clear plastic ziplock bags (quart or gallon size)',
+                    'Water (small amount, about 1/4 cup)',
+                    'Blue food coloring (optional)',
+                    'Permanent markers',
+                    'Tape',
+                    'Sunny window or warm spot'
+                ],
+                steps: [
+                    'Preparation (10 min): Draw a simple water cycle on the bag with marker: sun, clouds, ocean, arrows. This helps students label what they see.',
+                    'Add water (5 min): Pour 1/4 cup water into bottom of bag. Add a drop of blue food coloring if desired. This represents the ocean.',
+                    'Seal and hang (5 min): Seal bag tightly! Tape to a sunny window. Make sure water is at the bottom.',
+                    'Observe (ongoing): Check daily! Within hours, you\'ll see water droplets forming on sides (condensation). Eventually they "rain" back down (precipitation).',
+                    'Record observations: Draw what you see each day. Where is the water? What\'s happening?'
+                ],
+                safetyTips: [
+                    'Ensure bags are sealed properly to prevent leaks',
+                    'Clean up any water spills immediately',
+                    'Don\'t overfill bags with water',
+                    'Supervise younger students with plastic bags'
+                ],
+                engagementTips: [
+                    'Predict: "What will happen to the water?"',
+                    'Compare bags in sunny vs. shady spots',
+                    'Create a class "weather station" with multiple bags',
+                    'Time lapse photos showing changes',
+                    'Connect to real weather: "Where does rain come from?"',
+                    'Challenge: Can you make it rain faster?'
+                ],
+                questionsToAsk: [
+                    'Where did the water droplets on the sides come from?',
+                    'What made the water evaporate?',
+                    'How is this like rain on Earth?',
+                    'Why doesn\'t the water disappear from the bag?'
+                ]
+            },
+            {
+                id: 'activity-14',
+                title: 'Solar Oven S\'mores',
+                category: 'physics',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '60 minutes',
+                icon: '☀️',
+                shortDescription: 'Build a solar oven and cook treats using only the power of the sun!',
+                fullDescription: 'Students design and build solar ovens from simple materials, then use them to melt chocolate and make s\'mores. This activity teaches about solar energy, heat transfer, insulation, and sustainable energy while creating a delicious treat!',
+                whyItsCool: 'You cook with sunlight! No electricity, no fire - just the sun. Watching chocolate melt from solar power is amazing. Plus, you get to eat s\'mores at the end. Science has never tasted so good!',
+                learningObjectives: [
+                    'Understand how solar energy can be captured and used',
+                    'Learn about heat absorption and reflection',
+                    'Discover the role of insulation',
+                    'Explore renewable energy concepts'
+                ],
+                materials: [
+                    'Pizza boxes (one per group)',
+                    'Aluminum foil',
+                    'Black construction paper',
+                    'Plastic wrap',
+                    'Tape and glue',
+                    'Ruler and scissors',
+                    'Graham crackers, marshmallows, chocolate bars',
+                    'Small plates or paper plates',
+                    'Sunny day!'
+                ],
+                steps: [
+                    'Build oven (25 min): Cut flap in pizza box lid (leave one side attached). Line inside of flap with foil (shiny side out). Line bottom of box with black paper. Cover the hole you cut with plastic wrap to create a window.',
+                    'Position reflector (5 min): Prop flap open at angle using stick or ruler to reflect sunlight into box.',
+                    'Assemble s\'mores (5 min): Place graham cracker with chocolate and marshmallow on plate inside oven. Close lid (plastic window stays).',
+                    'Cook! (20+ min): Place in direct sunlight. Adjust reflector to maximize sun hitting the window. Wait and watch! Temperature inside can reach 200°F.',
+                    'Enjoy and discuss: Once marshmallow is soft and chocolate melted, eat your solar-cooked treat!'
+                ],
+                safetyTips: [
+                    'Check for food allergies before using marshmallows/chocolate',
+                    'Oven can get hot - use caution when opening',
+                    'Only cook in direct sunlight outdoors',
+                    'Wash hands before eating',
+                    'Don\'t look directly at sun or reflections'
+                ],
+                engagementTips: [
+                    'Place thermometers inside to track temperature',
+                    'Compare: which oven design gets hottest?',
+                    'Explain that solar panels work similarly!',
+                    'Try cooking different things: cheese on crackers, hot dogs',
+                    'Discuss: Could you cook a meal this way?',
+                    'Connect to renewable energy and climate'
+                ],
+                questionsToAsk: [
+                    'Why did we use aluminum foil?',
+                    'Why is the inside lined with black paper?',
+                    'What role does the plastic wrap play?',
+                    'How could we make the oven even hotter?'
+                ]
+            },
+            {
+                id: 'activity-15',
+                title: 'Coding with Cup Patterns',
+                category: 'engineering',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '45 minutes',
+                icon: '🥤',
+                shortDescription: 'Learn basic coding concepts by stacking cups in programmed patterns!',
+                fullDescription: 'Students learn fundamental coding concepts like sequences, loops, and algorithms through a hands-on cup-stacking activity. They write "code" instructions for partners to follow, introducing computational thinking without computers.',
+                whyItsCool: 'It\'s coding you can touch! Students become programmers AND robots. The challenge of giving perfect instructions is fun and frustrating. When it works, they feel like real coders!',
+                learningObjectives: [
+                    'Understand sequencing and following instructions',
+                    'Learn about algorithms and precision',
+                    'Introduce loops and patterns',
+                    'Develop computational thinking skills'
+                ],
+                materials: [
+                    'Plastic cups (different colors, 15-20 per team)',
+                    'Paper and pencils for writing code',
+                    'Pattern cards (optional)',
+                    'Timer',
+                    'Markers'
+                ],
+                steps: [
+                    'Introduction (10 min): Explain that code is just instructions. Demonstrate simple sequence: "Pick up red cup. Stack on blue cup." Students follow.',
+                    'Write code (10 min): Teams create a cup pattern. Then write step-by-step instructions (code) for another team to follow. Must be precise!',
+                    'Run the program (15 min): Teams swap code. Follow instructions EXACTLY - no guessing! If code is unclear, you get "bugs."',
+                    'Debug (5 min): If pattern doesn\'t match, find errors in code and fix (debug).',
+                    'Advanced challenges (5 min): Introduce loops: "Repeat 3 times: stack red cup, stack blue cup." See how loops make code shorter!'
+                ],
+                safetyTips: [
+                    'Stack cups on stable surfaces',
+                    'Don\'t throw cups',
+                    'Clean up if cups spill',
+                    'Use plastic cups, not glass'
+                ],
+                engagementTips: [
+                    'Use coding language: "execute," "debug," "loop"',
+                    'Make it competitive: fastest correct stack wins',
+                    'Increase complexity gradually',
+                    'Connect to real coding: "This is how we program robots!"',
+                    'Let students create challenge patterns for each other',
+                    'Award points for clear code that works on first try'
+                ],
+                questionsToAsk: [
+                    'What happened when instructions weren\'t clear?',
+                    'How is this like programming a computer?',
+                    'What\'s the difference between "pick up cup" and "pick up red cup"?',
+                    'How do loops make coding easier?'
+                ]
+            },
+            {
+                id: 'activity-16',
+                title: 'Invisible Ink Messages',
+                category: 'chemistry',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '35 minutes',
+                icon: '✉️',
+                shortDescription: 'Write secret messages with invisible ink and reveal them like a spy!',
+                fullDescription: 'Students create invisible ink using household materials and write secret messages that can only be revealed with heat. This activity teaches about chemical reactions, oxidation, and provides a fun introduction to acids and bases.',
+                whyItsCool: 'Secret spy messages! Students love the mystery and secrecy. Writing something invisible that magically appears is thrilling. Everyone wants to create codes and pass secret notes!',
+                learningObjectives: [
+                    'Learn that some chemical reactions require activation (heat)',
+                    'Understand oxidation basics',
+                    'Discover acids can change when heated',
+                    'Practice careful observation'
+                ],
+                materials: [
+                    'Lemon juice, milk, or baking soda solution',
+                    'Cotton swabs or small paintbrushes',
+                    'White paper',
+                    'Heat source (lamp, iron, or adult with lighter)',
+                    'Small bowls for ink',
+                    'Optional: candle and adult supervision'
+                ],
+                steps: [
+                    'Prepare ink (5 min): Pour lemon juice (or milk) into small bowl. This is your invisible ink!',
+                    'Write message (10 min): Dip cotton swab in lemon juice. Write message or draw picture on white paper. Let dry completely - it disappears!',
+                    'Reveal (10 min): ADULT ONLY - Hold paper near heat source (lamp, iron, candle). Watch message appear as brown letters! The heat causes oxidation.',
+                    'Experiment (10 min): Try different inks - lemon juice, milk, baking soda water. Which works best? Try writing over it with markers.',
+                    'Create spy codes: Combine with simple ciphers for extra secrecy!'
+                ],
+                safetyTips: [
+                    'ADULT SUPERVISION REQUIRED for heat source',
+                    'Keep paper away from open flames',
+                    'Don\'t touch hot surfaces',
+                    'Wash hands after using lemon juice',
+                    'Use lamp or iron if no adult available for candle'
+                ],
+                engagementTips: [
+                    'Create spy theme: codes, secret missions',
+                    'Send messages between teams to decode',
+                    'Combine with history: how spies used invisible ink',
+                    'Try different methods: UV light reactive ink',
+                    'Create treasure maps with invisible clues',
+                    'Explain the chemistry simply: heat makes molecules brown'
+                ],
+                questionsToAsk: [
+                    'Why did the message appear when we heated it?',
+                    'Which liquid worked best as invisible ink?',
+                    'How might spies have used this in history?',
+                    'What other ways could we reveal hidden messages?'
+                ]
+            },
+            {
+                id: 'activity-17',
+                title: 'Paper Airplane Physics',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '45 minutes',
+                icon: '✈️',
+                shortDescription: 'Design and test paper airplanes to learn about aerodynamics and flight!',
+                fullDescription: 'Students design, build, and test paper airplanes to learn about the forces of flight: lift, drag, thrust, and gravity. Through experimentation, they discover how wing shape, weight, and throwing technique affect flight distance and accuracy.',
+                whyItsCool: 'Paper airplane competitions are epic! Students love the challenge and get super competitive. Seeing their design fly farther or straighter than others is hugely satisfying. Plus, everyone already knows how to fold basic planes - now they\'ll understand WHY they fly!',
+                learningObjectives: [
+                    'Understand the four forces of flight: lift, drag, thrust, gravity',
+                    'Learn how wing design affects flight',
+                    'Practice the scientific method through testing',
+                    'Develop measurement and data recording skills'
+                ],
+                materials: [
+                    'Paper (various types: printer, construction, newspaper)',
+                    'Rulers and measuring tape',
+                    'Markers for decoration',
+                    'Tape (optional for modifications)',
+                    'Paper clips (to test weight)',
+                    'Data recording sheets',
+                    'Long hallway or outdoor space'
+                ],
+                steps: [
+                    'Introduction (5 min): Discuss the four forces of flight. Show diagrams. Ask: "Why do airplanes fly?"',
+                    'Design phase (10 min): Students fold different airplane designs. Try classic dart, glider, and wide-wing designs. Decorate!',
+                    'Testing (15 min): Fly each design three times. Measure distance. Record data. Which design flies farthest? Straightest?',
+                    'Modify (10 min): Based on results, make changes. Add weight? Change wings? Adjust throwing technique?',
+                    'Competition (5 min): Distance contest! Accuracy contest (hit a target)! Longest airtime!'
+                ],
+                safetyTips: [
+                    'No aiming planes at people or faces',
+                    'Clear flight zone of obstacles',
+                    'Use appropriate throwing force',
+                    'Watch where you\'re walking - trip hazard!',
+                    'Retrieve all planes before next round'
+                ],
+                engagementTips: [
+                    'Show videos of real planes and gliders',
+                    'Create different competition categories',
+                    'Let students name their planes',
+                    'Award medals for distance, accuracy, creativity',
+                    'Connect to real aircraft design',
+                    'Try extreme modifications: extra-long wings, multiple planes taped together'
+                ],
+                questionsToAsk: [
+                    'What makes a plane fly far?',
+                    'What happened when you added weight to the nose?',
+                    'Why do some planes glide and others dive?',
+                    'How do real airplanes use these same principles?'
+                ]
+            },
+            {
+                id: 'activity-18',
+                title: 'Bacterial Growth Observation',
+                category: 'biology',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '30 min + days',
+                icon: '🦠',
+                shortDescription: 'Grow bacteria colonies and learn about hand washing and microorganisms!',
+                fullDescription: 'Students culture bacteria from their hands and environment using agar plates, observing bacterial growth over several days. This powerful demonstration teaches about microorganisms, hygiene, and the importance of handwashing.',
+                whyItsCool: 'You can SEE germs! Students are shocked by how much grows from their "clean" hands. Comparing washed vs. unwashed hands creates dramatic, memorable results. This activity changes handwashing behavior forever!',
+                learningObjectives: [
+                    'Understand that microorganisms are everywhere',
+                    'Learn the importance of proper handwashing',
+                    'Observe bacterial colony growth',
+                    'Practice sterile technique and safety'
+                ],
+                materials: [
+                    'Pre-made agar plates (order from science supplier) or DIY agar',
+                    'Cotton swabs',
+                    'Labels and markers',
+                    'Hand soap',
+                    'Warm location for incubation',
+                    'Tape to seal plates',
+                    'Gloves',
+                    'Bleach for disposal'
+                ],
+                steps: [
+                    'Setup (10 min): Label plates: "unwashed hands," "washed hands," "keyboard," "doorknob," etc.',
+                    'Collect samples (10 min): Swab designated surface, then gently zigzag across agar plate. Seal with tape immediately!',
+                    'Incubate (10 min setup, then days): Store sealed plates upside down in warm spot. DO NOT OPEN once sealed!',
+                    'Observe (daily for 3-5 days): Watch colonies grow! Take photos. Compare plates. Which has most growth?',
+                    'Disposal: DO NOT OPEN PLATES. Seal in plastic bag, dispose properly or have adult soak in bleach solution.'
+                ],
+                safetyTips: [
+                    'NEVER open plates once sealed - bacteria can be harmful',
+                    'Wear gloves when handling plates',
+                    'Tape plates shut - must stay sealed',
+                    'Proper disposal: bleach or autoclave required',
+                    'Wash hands thoroughly after activity',
+                    'Keep plates away from food areas'
+                ],
+                engagementTips: [
+                    'Compare: unwashed vs. washed vs. sanitized hands',
+                    'Test different locations: keyboard, phone, desk, bathroom',
+                    'Make predictions before observing',
+                    'Take daily photos to create time-lapse',
+                    'Discuss: "How does this change how you wash your hands?"',
+                    'This activity often goes viral - students show family!'
+                ],
+                questionsToAsk: [
+                    'Which surface had the most bacteria?',
+                    'Were you surprised by the results?',
+                    'How does this show the importance of handwashing?',
+                    'Are all bacteria harmful?'
+                ]
+            },
+            {
+                id: 'activity-19',
+                title: 'DIY Lava Lamp',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '35 minutes',
+                icon: '🌊',
+                shortDescription: 'Create a mesmerizing lava lamp using oil, water, and fizzing tablets!',
+                fullDescription: 'Students create temporary lava lamps using oil, water, food coloring, and effervescent tablets. This activity demonstrates density, polarity, and gas formation while creating a hypnotic visual display.',
+                whyItsCool: 'It looks magical! The colorful blobs rising and falling are mesmerizing. Students can\'t stop watching. It combines chemistry and physics in a beautiful, repeatable experiment.',
+                learningObjectives: [
+                    'Understand that oil and water don\'t mix (polarity)',
+                    'Learn about density and why oil floats',
+                    'Observe gas bubbles carrying water upward',
+                    'Explore chemical reactions'
+                ],
+                materials: [
+                    'Clear bottles or jars',
+                    'Vegetable oil',
+                    'Water',
+                    'Food coloring',
+                    'Effervescent tablets (Alka-Seltzer or similar)',
+                    'Optional: glitter, small flashlight for glow effect'
+                ],
+                steps: [
+                    'Fill bottle (5 min): Fill 3/4 full with vegetable oil. Add water to almost full (oil and water separate!).',
+                    'Add color (5 min): Add several drops of food coloring. Watch it sink through oil and color the water!',
+                    'Make it bubble! (20 min): Break effervescent tablet into pieces. Drop in one piece. Watch the lava lamp action! Blobs of colored water rise and fall.',
+                    'Keep it going: Add more tablet pieces as reaction slows. Can last for 20-30 minutes!',
+                    'Enhance: Shine flashlight from bottom for cool glow effect. Add glitter for extra sparkle.'
+                ],
+                safetyTips: [
+                    'Don\'t drink or taste the mixture',
+                    'Clean up oil spills immediately - slippery!',
+                    'Use plastic bottles, not glass',
+                    'Supervise younger students with tablets',
+                    'Seal bottle when done to prevent spills'
+                ],
+                engagementTips: [
+                    'Darken room and use flashlight for dramatic effect',
+                    'Try different colored water in each bottle',
+                    'Compare: big vs. small pieces of tablet',
+                    'Let students take bottles home (sealed)',
+                    'Explain that real lava lamps use heat instead of gas',
+                    'Play calming music - make it a sensory experience'
+                ],
+                questionsToAsk: [
+                    'Why don\'t oil and water mix?',
+                    'Why does the colored water rise up then fall?',
+                    'What is making the bubbles?',
+                    'How long does the reaction last?'
+                ]
+            },
+            {
+                id: 'activity-20',
+                title: 'Crystal Growing',
+                category: 'chemistry',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '30 min + days',
+                icon: '💎',
+                shortDescription: 'Grow beautiful crystals and learn about supersaturated solutions!',
+                fullDescription: 'Students create supersaturated solutions and grow crystals over several days or weeks. This activity teaches about solutions, saturation, evaporation, and crystal structure while creating beautiful, gem-like results.',
+                whyItsCool: 'You grow real crystals! Students are amazed watching geometric crystals form day by day. The results look like precious gems. It feels like magic but it\'s pure chemistry!',
+                learningObjectives: [
+                    'Understand supersaturated solutions',
+                    'Learn about evaporation and crystallization',
+                    'Observe geometric crystal structures',
+                    'Practice patience in science - some results take time!'
+                ],
+                materials: [
+                    'Borax, sugar, or salt (for different crystal types)',
+                    'Boiling water (adult supervision)',
+                    'Glass jars',
+                    'String or pipe cleaners',
+                    'Pencils for hanging string',
+                    'Food coloring (optional)',
+                    'Measuring cups and spoons',
+                    'Magnifying glass'
+                ],
+                steps: [
+                    'Make supersaturated solution (15 min): ADULT - Boil water. Add borax/sugar/salt until no more dissolves. Stir well. Add food coloring if desired.',
+                    'Prepare crystal former (5 min): Tie string to pencil. Or shape pipe cleaner into star, snowflake, etc. This is where crystals will grow!',
+                    'Set up (5 min): Pour solution into jar. Hang string/pipe cleaner so it\'s suspended in liquid, not touching sides.',
+                    'Wait and observe (days): Check daily. Crystals form as water evaporates and solution can\'t hold as much dissolved material. Don\'t disturb!',
+                    'Examine (final day): Remove carefully. Let dry. Observe crystal shapes with magnifying glass!'
+                ],
+                safetyTips: [
+                    'Adult handles boiling water',
+                    'Let solution cool before students handle',
+                    'Don\'t drink the solution',
+                    'Wash hands after touching crystals',
+                    'Borax can irritate skin - use carefully',
+                    'Place jars where they won\'t be knocked over'
+                ],
+                engagementTips: [
+                    'Try different materials: compare borax, sugar, and salt crystals',
+                    'Add food coloring for colored crystals',
+                    'Shape pipe cleaners into snowflakes, stars, names',
+                    'Compare crystal shapes under magnifying glass',
+                    'Connect to real gems and minerals',
+                    'Create crystal "geodes" using egg shells'
+                ],
+                questionsToAsk: [
+                    'What shape are your crystals?',
+                    'Why do you think crystals have geometric shapes?',
+                    'What happened to the water?',
+                    'How are these like diamonds or gems in the Earth?'
+                ]
+            },
+            {
+                id: 'activity-21',
+                title: 'Catapult Engineering',
+                category: 'engineering',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '55 minutes',
+                icon: '🎯',
+                shortDescription: 'Build working catapults and explore projectile motion!',
+                fullDescription: 'Students design and build catapults using simple materials, then test them to explore projectile motion, stored energy, and lever mechanics. Teams compete to launch objects farthest or hit targets with accuracy.',
+                whyItsCool: 'Launch things across the room! Students love the power and drama of catapults. The competition aspect is highly engaging. Plus, they\'re building real engineering devices from history!',
+                learningObjectives: [
+                    'Understand potential and kinetic energy',
+                    'Learn about levers and fulcrums',
+                    'Explore projectile motion and angles',
+                    'Practice iterative engineering design'
+                ],
+                materials: [
+                    'Popsicle sticks or tongue depressors',
+                    'Rubber bands',
+                    'Plastic spoons',
+                    'Glue or tape',
+                    'Small marshmallows or pom-poms (projectiles)',
+                    'Measuring tape',
+                    'Targets (cups, buckets, drawn targets)',
+                    'Optional: plastic bottle caps for basket'
+                ],
+                steps: [
+                    'Introduction (10 min): Show pictures of medieval catapults. Explain how they store energy in tension. Demonstrate lever principle.',
+                    'Build (25 min): Stack popsicle sticks, secure with rubber bands. Attach spoon as launcher. Experiment with designs - where should fulcrum be?',
+                    'Test and refine (10 min): Launch marshmallows! Measure distance. Adjust rubber band tension, fulcrum position, launch angle.',
+                    'Competition (10 min): Distance challenge! Accuracy challenge! Can you hit a target? Land in a cup?',
+                    'Analysis: Which designs worked best? Why? What would you change?'
+                ],
+                safetyTips: [
+                    'Only launch soft projectiles (marshmallows, pom-poms)',
+                    'Never aim at people',
+                    'Clear launch zone before firing',
+                    'Wear safety glasses if using rubber bands under high tension',
+                    'Supervise younger students with rubber bands'
+                ],
+                engagementTips: [
+                    'Set up target zones with points',
+                    'Create castle towers to knock down',
+                    'Show videos of trebuchets and catapults',
+                    'Compare different fulcrum positions scientifically',
+                    'Connect to history: how catapults were used in wars',
+                    'Try different projectiles: which flies farthest?'
+                ],
+                questionsToAsk: [
+                    'Where is the energy stored in your catapult?',
+                    'What happens if you move the fulcrum?',
+                    'At what angle should you launch for maximum distance?',
+                    'How could you make it launch farther?'
+                ]
+            },
+            {
+                id: 'activity-22',
+                title: 'Sink or Float Discovery',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-4',
+                duration: '40 minutes',
+                icon: '⛵',
+                shortDescription: 'Predict and test which objects sink or float - discover buoyancy!',
+                fullDescription: 'Students predict and test whether various objects sink or float, learning about buoyancy, density, and displacement. Through hands-on experimentation, they discover that floating isn\'t just about weight - it\'s about density!',
+                whyItsCool: 'Making predictions is fun! Students love being right (or wrong) about what happens. The surprises - like a heavy boat floating or a tiny rock sinking - create "aha!" moments. Plus, everyone loves playing with water!',
+                learningObjectives: [
+                    'Understand that density determines if objects float or sink',
+                    'Learn about buoyancy and water displacement',
+                    'Practice making predictions and testing hypotheses',
+                    'Discover that shape matters, not just weight'
+                ],
+                materials: [
+                    'Large tub or bucket of water',
+                    'Various objects to test: apple, rock, sponge, coin, cork, plastic toys, aluminum foil, clay, grape, orange (with/without peel)',
+                    'Towels for cleanup',
+                    'Prediction sheets',
+                    'Optional: playdough or clay to make boats'
+                ],
+                steps: [
+                    'Gather objects (5 min): Show students the collection. Ask: "Which will sink? Which will float?"',
+                    'Make predictions (10 min): Before testing, students predict and record. Encourage reasoning: "Why do you think...?"',
+                    'Test! (15 min): One by one, gently place objects in water. Were predictions correct? Sort into "float" and "sink" piles.',
+                    'Explore density (10 min): Try aluminum foil as a ball (sinks) vs. boat shape (floats). Same material, different results! Try clay the same way.',
+                    'Challenge: Can you make a clay boat that holds pennies without sinking?'
+                ],
+                safetyTips: [
+                    'Supervise closely around water',
+                    'Keep water level low to prevent splashing',
+                    'Wipe up spills immediately - slip hazard',
+                    'Don\'t let students drink test water',
+                    'Use non-breakable objects only'
+                ],
+                engagementTips: [
+                    'Include surprising items: pumice stone (floats!), grape (sinks but raisin floats!)',
+                    'Try orange with peel (floats) vs. without peel (sinks)',
+                    'Build boats from clay and have cargo contests',
+                    'Connect to real ships: "How do giant metal ships float?"',
+                    'Try salt water vs. fresh water - easier to float in ocean!',
+                    'Let younger students just explore and discover'
+                ],
+                questionsToAsk: [
+                    'Why did this float even though it\'s heavy?',
+                    'What\'s the difference between objects that float vs. sink?',
+                    'Why does the same clay sink as a ball but float as a boat?',
+                    'How do ships made of metal float?'
+                ]
+            },
+            {
+                id: 'activity-23',
+                title: 'Ecosystem in a Bottle',
+                category: 'biology',
+                difficulty: 'Medium',
+                ageRange: '3-6',
+                duration: '45 min + ongoing',
+                icon: '🌿',
+                shortDescription: 'Create a self-sustaining ecosystem in a bottle and observe interactions!',
+                fullDescription: 'Students build closed terrarium ecosystems in bottles, learning about the water cycle, photosynthesis, decomposition, and interdependence of living things. These mini-worlds can last for months with minimal care!',
+                whyItsCool: 'It\'s a world in a bottle! Students are amazed that plants can live sealed in a bottle with no care. Watching the water cycle happen inside is magical. It\'s like having a tiny rainforest!',
+                learningObjectives: [
+                    'Understand ecosystem components: producers, consumers, decomposers',
+                    'Learn about closed systems and cycles',
+                    'Observe the water cycle in action',
+                    'Understand photosynthesis and respiration balance'
+                ],
+                materials: [
+                    'Clear plastic bottles or jars with lids',
+                    'Small pebbles or gravel',
+                    'Activated charcoal (optional, helps prevent mold)',
+                    'Potting soil',
+                    'Small plants (moss, ferns, small tropical plants)',
+                    'Water',
+                    'Optional: small figurines, decorative rocks',
+                    'Spray bottle'
+                ],
+                steps: [
+                    'Layer bottom (15 min): Add pebbles (drainage), thin charcoal layer, then 2-3 inches of soil.',
+                    'Plant (15 min): Make small holes, insert plants gently. Choose plants that like humidity. Don\'t overcrowd!',
+                    'Water and seal (10 min): Lightly water with spray bottle - soil should be damp, not soaked. Seal tightly!',
+                    'Place (5 min): Put in indirect sunlight. Not too much sun or it overheats!',
+                    'Observe (ongoing): Check weekly. Should see water cycle: condensation on sides, "rain," evaporation. If too dry, add a little water. If too wet, leave open briefly.'
+                ],
+                safetyTips: [
+                    'Wash hands after handling soil',
+                    'Use non-toxic plants',
+                    'Keep bottles sealed to prevent mold spores escaping',
+                    'Don\'t place in direct sun - can overheat',
+                    'Supervise younger students with glass bottles'
+                ],
+                engagementTips: [
+                    'Add small toy animals or fairies for fun',
+                    'Create themed terrariums: desert, rainforest, etc.',
+                    'Name your ecosystems',
+                    'Keep observation journals with drawings',
+                    'Compare open vs. closed bottles - which plants survive?',
+                    'Discuss: Could humans live in a closed ecosystem? (space station!)'
+                ],
+                questionsToAsk: [
+                    'Where does the water go when it evaporates?',
+                    'How do plants get what they need in a sealed bottle?',
+                    'What would happen if we added too many plants?',
+                    'How is this like Earth\'s ecosystem?'
+                ]
+            },
+            {
+                id: 'activity-24',
+                title: 'Color Mixing Exploration',
+                category: 'chemistry',
+                difficulty: 'Easy',
+                ageRange: 'K-4',
+                duration: '35 minutes',
+                icon: '🎨',
+                shortDescription: 'Mix colors and explore how light creates the colors we see!',
+                fullDescription: 'Students explore color theory through hands-on mixing experiments with paint and light. They discover primary, secondary colors, and learn the difference between mixing pigments (paint) versus light. A perfect blend of art and science!',
+                whyItsCool: 'Making new colors is like magic! Students love the creative, artistic aspect. The surprise that mixing light is different from mixing paint blows their minds. Plus, everyone gets messy in the name of science!',
+                learningObjectives: [
+                    'Identify primary colors (red, yellow, blue for paint)',
+                    'Discover how to create secondary colors',
+                    'Understand additive vs. subtractive color mixing',
+                    'Learn how our eyes see color'
+                ],
+                materials: [
+                    'Washable paints (red, yellow, blue, white, black)',
+                    'Paper plates or palette for mixing',
+                    'Paintbrushes',
+                    'Paper for painting',
+                    'Water cups',
+                    'Optional: flashlights with colored cellophane (red, blue, green) for light mixing',
+                    'Color wheels (print or draw)'
+                ],
+                steps: [
+                    'Introduction (5 min): Show color wheel. Discuss: "What are primary colors? Can we make them by mixing?" (No!)',
+                    'Paint mixing (15 min): Mix red + yellow = ? (orange). Yellow + blue = ? (green). Blue + red = ? (purple). Let students experiment!',
+                    'Explore variations (10 min): Add white (makes tints/lighter). Add black (makes shades/darker). Mix all three primaries (brown/muddy).',
+                    'Light experiment (optional, 5 min): Overlap colored light beams from flashlights. Red + Blue + Green light = white! Opposite of paint!',
+                    'Create art: Use knowledge to paint a rainbow or color wheel.'
+                ],
+                safetyTips: [
+                    'Use washable, non-toxic paints',
+                    'Protect work surfaces with newspaper',
+                    'Wear smocks or old shirts',
+                    'Keep paints away from clothes and furniture',
+                    'Wash brushes and hands thoroughly after'
+                ],
+                engagementTips: [
+                    'Challenge: Can you make the exact shade of green on this leaf?',
+                    'Create color mixing charts they can keep',
+                    'Explain why TV/computer screens use RGB (light mixing)',
+                    'Show that printers use CMYK (pigment mixing)',
+                    'Make predictions before mixing',
+                    'Connect to art: how painters create all colors from just a few'
+                ],
+                questionsToAsk: [
+                    'What happens when you mix all the primary colors?',
+                    'How can you make a color lighter? Darker?',
+                    'Why is mixing light different from mixing paint?',
+                    'Can you make all colors from just three colors?'
+                ]
+            },
+            {
+                id: 'activity-25',
+                title: 'DIY Compass Making',
+                category: 'physics',
+                difficulty: 'Easy',
+                ageRange: 'K-6',
+                duration: '30 minutes',
+                icon: '🧭',
+                shortDescription: 'Create your own compass and learn about Earth\'s magnetic field!',
+                fullDescription: 'Students create simple compasses using magnetized needles floating on water. This activity teaches about Earth\'s magnetic field, magnetization, and how compasses have helped explorers navigate for centuries.',
+                whyItsCool: 'You can build a real navigation tool! Students are amazed that a needle floating on water can find north. Testing it against a real compass validates their work. Perfect for young explorers and adventurers!',
+                learningObjectives: [
+                    'Understand that Earth has a magnetic field',
+                    'Learn how to magnetize metal objects',
+                    'Discover how compasses work for navigation',
+                    'Practice careful observation and testing'
+                ],
+                materials: [
+                    'Sewing needles (one per student)',
+                    'Strong magnets',
+                    'Small pieces of cork or foam',
+                    'Shallow dishes or bowls with water',
+                    'Real compass for comparison',
+                    'Labels (N, S, E, W)',
+                    'Optional: paper and markers to create compass rose'
+                ],
+                steps: [
+                    'Magnetize needle (10 min): Stroke needle with magnet in ONE direction 30-40 times. Always same direction! This aligns magnetic domains.',
+                    'Prepare float (5 min): Push needle through small cork slice, or lay on foam circle. Needle should be balanced horizontally.',
+                    'Float it! (5 min): Gently place in water dish. Watch it spin and point north!',
+                    'Test (5 min): Compare to real compass. Does it point the same direction? Turn the dish - needle still points north!',
+                    'Explore (5 min): Bring magnet close - what happens? Try different needles. How long does magnetization last?'
+                ],
+                safetyTips: [
+                    'Supervise needle use - sharp!',
+                    'Keep needles away from younger students',
+                    'Don\'t let students poke themselves testing if magnetized',
+                    'Clean up any water spills',
+                    'Collect all needles at end - do a count'
+                ],
+                engagementTips: [
+                    'Tell stories of explorers using compasses',
+                    'Go outside and actually navigate using compass!',
+                    'Draw compass rose around dish with N,S,E,W',
+                    'Explain magnetic north vs. true north',
+                    'Compare to phone compass app',
+                    'Create treasure hunt using compasses'
+                ],
+                questionsToAsk: [
+                    'Why does the needle always point the same direction?',
+                    'What happens if you bring a magnet near?',
+                    'How did explorers use compasses to navigate?',
+                    'Why do we say "true north" and "magnetic north"?'
+                ]
+            }
+        ];
+
+        // Load activities into grid
+        function loadActivities(filter = 'all') {
+            const grid = document.getElementById('activitiesGrid');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            let filteredActivities = activities;
+            
+            if (filter !== 'all') {
+                filteredActivities = activities.filter(a => a.category === filter);
+            }
+            
+            if (searchTerm) {
+                filteredActivities = filteredActivities.filter(a => 
+                    a.title.toLowerCase().includes(searchTerm) ||
+                    a.shortDescription.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            grid.innerHTML = filteredActivities.map(activity => `
+                <div class="activity-card" onclick="openActivityModal('${activity.id}')">
+                    <div class="activity-icon">${activity.icon}</div>
+                    <h3>${activity.title}</h3>
+                    <div class="activity-meta">
+                        <span class="meta-tag category">${activity.category}</span>
+                        <span class="meta-tag">${activity.duration}</span>
+                        <span class="meta-tag">${activity.ageRange}</span>
+                    </div>
+                    <p>${activity.shortDescription}</p>
+                    <div class="activity-difficulty">Difficulty: ${activity.difficulty}</div>
+                </div>
+            `).join('');
+        }
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                loadActivities(this.dataset.filter);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+            loadActivities(activeFilter);
+        });
+
+        // Open activity modal
+        function openActivityModal(activityId) {
+            const activity = activities.find(a => a.id === activityId);
+            const modal = document.getElementById('activityModal');
+            const modalBody = document.getElementById('modalBody');
+            
+            modalBody.innerHTML = `
+                <h2>${activity.icon} ${activity.title}</h2>
+                <div class="activity-meta">
+                    <span class="meta-tag category">${activity.category}</span>
+                    <span class="meta-tag">${activity.difficulty}</span>
+                    <span class="meta-tag">${activity.ageRange}</span>
+                    <span class="meta-tag">${activity.duration}</span>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Overview</h3>
+                    <p>${activity.fullDescription}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Why It's Cool</h3>
+                    <p>${activity.whyItsCool}</p>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Learning Objectives</h3>
+                    <ul>
+                        ${activity.learningObjectives.map(obj => `<li>${obj}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Materials Needed</h3>
+                    <ul>
+                        ${activity.materials.map(mat => `<li>${mat}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Step-by-Step Instructions</h3>
+                    <ol>
+                        ${activity.steps.map(step => `<li>${step}</li>`).join('')}
+                    </ol>
+                </div>
+                
+                ${activity.safetyTips ? `
+                <div class="modal-section">
+                    <div class="safety-warning">
+                        <strong>⚠️ Safety Tips:</strong>
+                        <ul>
+                            ${activity.safetyTips.map(tip => `<li>${tip}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+                ` : ''}
+                
+                <div class="modal-section">
+                    <h3>Engagement Tips</h3>
+                    <ul>
+                        ${activity.engagementTips.map(tip => `<li>${tip}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-section">
+                    <h3>Questions to Ask Students</h3>
+                    <ul>
+                        ${activity.questionsToAsk.map(q => `<li>${q}</li>`).join('')}
+                    </ul>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="window.print()">📄 Print Activity</button>
+                    <button class="btn btn-secondary" onclick="shareActivity('${activity.id}')">🔗 Share</button>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('activityModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function shareActivity(activityId) {
+            const url = window.location.href.split('#')[0] + '#activity-' + activityId;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'SPARK Activity',
+                    url: url
+                });
+            } else {
+                navigator.clipboard.writeText(url);
+                alert('Link copied to clipboard!');
+            }
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('activityModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Initialize
+        loadActivities();
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Team Carousel Functionality
+        const teamMembers = [
+            {
+                name: '[President Name]',
+                role: 'Club President',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Club President',
+                bio: '[Add a short bio about the president - their passion for science education, why they started SPARK, their favorite activities, and what they hope to achieve.]',
+                image: 'Replace with president photo'
+            },
+            {
+                name: '[VP Name]',
+                role: 'Vice President',
+                grade: 'Junior, Hillsdale High School',
+                badge: 'Vice President',
+                bio: '[Add description about the VP - their role in coordinating activities, managing volunteers, etc.]',
+                image: 'Replace with VP photo'
+            },
+            {
+                name: '[Officer Name]',
+                role: 'Activity Coordinator',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Activity Coordinator',
+                bio: '[Add description about their role - planning experiments, training volunteers, etc.]',
+                image: 'Replace with officer photo'
+            },
+            {
+                name: '[Volunteer Name]',
+                role: 'Chemistry Specialist',
+                grade: 'Junior, Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: '[Add description - favorite activity, why they volunteer]',
+                image: 'Replace with volunteer photo'
+            },
+            {
+                name: '[Volunteer Name]',
+                role: 'Physics Enthusiast',
+                grade: 'Senior, Hillsdale High School',
+                badge: 'Active Volunteer',
+                bio: '[Add description - favorite activity, why they volunteer]',
+                image: 'Replace with volunteer photo'
+            }
+            // Add more team members as needed
+        ];
+
+        let currentSlideIndex = 0;
+
+        function renderCarousel() {
+            const member = teamMembers[currentSlideIndex];
+            const slideHTML = `
+                <div class="carousel-image">
+                    <div class="placeholder-img" style="height: 450px;">
+                        ${member.image}
+                    </div>
+                </div>
+                <div class="carousel-description">
+                    <span class="member-badge">${member.badge}</span>
+                    <h3>${member.name}</h3>
+                    <p class="member-role">${member.grade}</p>
+                    <p class="member-bio">${member.bio}</p>
+                </div>
+            `;
+
+            const carouselSlide = document.querySelector('.carousel-slide');
+            if (carouselSlide) {
+                carouselSlide.innerHTML = slideHTML;
+            }
+
+            updateDots();
+        }
+
+        function moveCarousel(direction) {
+            currentSlideIndex += direction;
+
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = teamMembers.length - 1;
+            } else if (currentSlideIndex >= teamMembers.length) {
+                currentSlideIndex = 0;
+            }
+
+            renderCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            renderCarousel();
+        }
+
+        function updateDots() {
+            const dots = document.querySelectorAll('.dot');
+            dots.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Initialize carousel on page load
+        if (document.querySelector('.carousel-slide')) {
+            renderCarousel();
+
+            // Update dots to match number of team members
+            const dotsContainer = document.getElementById('carouselDots');
+            if (dotsContainer) {
+                dotsContainer.innerHTML = teamMembers.map((_, index) =>
+                    `<span class="dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></span>`
+                ).join('');
+            }
+        }
+    </script>
+</body>
+</html>
